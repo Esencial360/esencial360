@@ -1,16 +1,18 @@
 import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { burgerMenuAnimation } from '../animations/burger-menu.animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  animations: [burgerMenuAnimation]
+  animations: [burgerMenuAnimation],
 })
 export class HeaderComponent {
-  showMenu: boolean = false;
-  menuState: 'open' | 'closed' = 'closed';
+  isOpen: boolean = false;
+
+
 
   constructor(private route: Router, private renderer: Renderer2) {}
   
@@ -27,12 +29,13 @@ export class HeaderComponent {
     this.route.navigate(['/menu'])
   }
 
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
-    if (this.showMenu) {
-      this.renderer.addClass(document.body, 'menu-opened');
-    } else {
-      this.renderer.removeClass(document.body, 'menu-opened');
-    }
+  
+  toggle() {
+    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+          this.renderer.addClass(document.body, 'menu-opened');
+        } else {
+          this.renderer.removeClass(document.body, 'menu-opened');
+        }
   }
 }

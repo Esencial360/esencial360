@@ -28,6 +28,7 @@
   </nav>
 </header>
 
+<!-- @if (!isOpen) { -->
 <header
   class="lg:hidden text-white bg-white p-4 flex justify-between items-center w-full sticky top-0 z-40"
   style="
@@ -44,10 +45,7 @@
         (click)="onHome()"
       />
     </div>
-    <button
-      class="lg:hidden text-black focus:outline-none"
-      (click)="toggleMenu()"
-    >
+    <button class="lg:hidden text-black focus:outline-none" (click)="toggle()">
       <svg
         class="w-6 h-6"
         fill="none"
@@ -65,19 +63,35 @@
     </button>
   </div>
 </header>
+<!-- } -->
 
-<section *ngIf="showMenu" class="absolute w-full h-screen bg-bone z-50">
-  <span
-    (click)="toggleMenu()"
-    class="absolute text-3xl text-pinkMain -translate-x-2/4 -translate-y-1/2 top-[8%] left-[85%]"
-    ><i class="fas fa-times-circle" style="color: #f9659f"></i
-  ></span>
-  <div
-    class="absolute text-3xl text-black -translate-x-2/4 -translate-y-1/2 top-1/2 left-2/4 uppercase"
-  >
-    <!-- Add your menu items here -->
-    <a (click)="onHome()" class="block py-2">Home</a>
-    <a (click)="onMenu()" class="block py-2">Menu</a>
-    <a (click)="onContact()" class="block py-2">Contact</a>
+<section
+  class="fixed top-0 left-0 w-full h-full montserrat-normal bg-black text-white z-50"
+  [@menuAnimation]="isOpen ? 'open' : 'closed'"
+>
+  <button class="lg:hidden text-white focus:outline-none" (click)="toggle()">
+    <span class="material-symbols-outlined"> close </span>
+  </button>
+  <div class="container mx-auto px-4 mt-16">
+    <ul class="space-y-4 text-lg font-semibold">
+      <li class="mb-5">EXPLORE</li>
+      <li class="ml-2">CLASSES</li>
+      <li class="ml-2">SERIES</li>
+      <li class="ml-2">MEMBERSHIP</li>
+      <li class="border-t border-gray-700 pt-4 my-8"></li>
+      <li class="mb-5">SHOP</li>
+      <li class="ml-2">GEAR</li>
+      <li class="ml-2">CLOTHING</li>
+      <li class="flex items-center ml-2">
+        WELLNESS
+        <span class="bg-red-500 text-white ml-2 py-1 px-2 rounded-full text-xs"
+          >NEW</span
+        >
+      </li>
+      <li class="ml-2">GIFT CARDS</li>
+      <li class="border-t border-gray-700 pt-4 my-8"></li>
+      <li class="">SIGN IN</li>
+      <li class="">TRY FOR FREE</li>
+    </ul>
   </div>
 </section>

@@ -7,6 +7,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body.menu-opened {
+  overflow: hidden; 
+}
 
 .raleway-regular {
     font-family: "Raleway", sans-serif;
