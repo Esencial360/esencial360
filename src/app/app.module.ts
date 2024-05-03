@@ -12,8 +12,9 @@ import { SingleClassComponent } from './pages/videos/single-class/single-class.c
 import { InstructorsCatalogueComponent } from './pages/instructors/instructors-catalogue/instructors-catalogue.component';
 import { SingleInstructorComponent } from './pages/instructors/single-instructor/single-instructor.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { BlogComponent } from './pages/blog/blog.component';
+import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { AboutComponent } from './pages/about/about.component';
+import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AboutComponent } from './pages/about/about.component';
     UserProfileComponent,
     BlogComponent,
     AboutComponent,
+    SingleBlogComponent,
   ],
   imports: [
     BrowserModule,

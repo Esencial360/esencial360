@@ -1,0 +1,12 @@
+<app-header></app-header>
+<section>
+    @for (blog of blogs; track blog) {
+        <div>
+            <img [src]="blog.image" alt="blog thumbnail">
+            <h3>{{blog.title}}</h3>
+            <p>{{blog.summary}}</p>
+            <app-button (click)="onNavigateToBlog(blog.id)"></app-button>
+        </div>
+    }
+</section>
+<app-footer></app-footer>
