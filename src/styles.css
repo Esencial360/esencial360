@@ -45,4 +45,15 @@ body.menu-opened {
     font-weight: 100;
     font-style: normal;
   }
+
+  .no-scrollbar {
+    transform: translateY(0);
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
   

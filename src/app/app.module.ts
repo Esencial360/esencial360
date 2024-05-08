@@ -15,6 +15,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.component';
+import { SectionSneakPeakComponent } from './components/section-sneak-peak/section-sneak-peak.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.compo
     BlogComponent,
     AboutComponent,
     SingleBlogComponent,
+    SectionSneakPeakComponent,
   ],
   imports: [
     BrowserModule,
