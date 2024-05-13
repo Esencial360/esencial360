@@ -10,18 +10,17 @@ import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 const routes: Routes = [
-{path: '', component: LandingComponent },
-{path: 'about', component: AboutComponent },
-{path: 'blog', component: BlogComponent },
-{path: 'classes', component: VideosCatalogueComponent },
-{path: 'instructors', component: InstructorsCatalogueComponent },
-{path: 'user-settings', component: UserProfileComponent },
-{path: '', component: LandingComponent },
-{path: '', component: LandingComponent },
+  { path: '', component: LandingComponent }, // Default route (empty path)
+  { path: 'about', component: AboutComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'classes', component: VideosCatalogueComponent },
+  { path: 'instructores', component: InstructorsCatalogueComponent },
+  { path: 'instructores/:id', component: SingleInstructorComponent },
+  { path: 'user-settings', component: UserProfileComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }, // Catch-all for invalid routes (404)
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

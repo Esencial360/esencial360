@@ -1,31 +1,117 @@
 <app-header></app-header>
 <section class="bg-white raleway-regular">
-    <div class="flex flex-col items-center justify-startwq h-screen">
-        <div class="text-center">
-          <img src="../../../assets/images/yoga.jpg" alt="Welcome to your wellness era" class="mb-4">
-          <h1 class="text-2xl font-bold mb-2">WELCOME TO YOUR WELLNESS ERA</h1>
-          <p class="mb-4">Prioritize your wellness goals with award-winning fitness, meditation, nutrition, and self-care classes on Alo Moves.</p>
-          <button class="bg-black text-white py-2 px-4 rounded">START FREE TRIAL</button>
-          <div class="mt-4">
-            <a href="#" class="text-sm underline">Send a Gift Card</a>
-          </div>
-        </div>
+  <div class="flex flex-col items-center justify-start h-screen">
+    <div class="text-center">
+      <img
+        src="../../../assets/images/yoga.jpg"
+        alt="Welcome to your wellness era"
+        class="mb-4"
+      />
+      <h1 class="text-2xl font-bold mb-2">WELCOME TO YOUR WELLNESS ERA</h1>
+      <p class="mb-4">
+        Prioritize your wellness goals with award-winning fitness, meditation,
+        nutrition, and self-care classes on Alo Moves.
+      </p>
+      <button class="bg-black text-white py-2 px-4 rounded">
+        START FREE TRIAL
+      </button>
+      <div class="mt-4">
+        <a href="#" class="text-sm underline">Send a Gift Card</a>
       </div>
-      <div class="bg-gray-100 py-16">
-        <div class=" mx-auto px-4">
-          <h1 class="text-4xl font-bold mb-8 text-center">FIND WHAT MOVES YOU</h1>
-          <p class="text-lg mb-8 text-center">Whether you're a complete beginner or you want to step up your routine, get the full studio experience at home with thousands of classes for body, mind, and spirit.</p>
-          <div class="flex overflow-x-auto no-scrollbar h-[400px]">
-          @for (class of classes; track class){
-            <div class="bg-white rounded-lg shadow-md  flex-none w-60 mr-4 pb-2 h-[360px]">
-              <img [src]="class.image" alt="Fitness" class="w-full h-[160px] object-cover rounded-t-lg">
-              <h2 class="text-2xl font-bold my-2 px-2">{{class.title}}</h2>
-              <p class="text-gray-600 mb-4 px-2">{{class.description}}</p>
-              <a [href]="class.link" class="text-blue-500 hover:text-blue-700 px-2">Learn More</a>
-            </div>
-          }
-        </div>  
+    </div>
+  </div>
+  <div class="bg-gray-100 pb-5">
+    <div class="mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-8 text-center">FIND WHAT MOVES YOU</h1>
+      <p class="text-lg mb-8 text-center">
+        Whether you're a complete beginner or you want to step up your routine,
+        get the full studio experience at home with thousands of classes for
+        body, mind, and spirit.
+      </p>
+      <div class="flex overflow-x-auto no-scrollbar h-[400px]">
+        @for (class of classes; track class){
+        <div
+          class="bg-white rounded-lg shadow-md flex-none w-60 mr-4 pb-2 h-[360px]"
+        >
+          <img
+            [src]="class.image"
+            alt="Fitness"
+            class="w-full h-[160px] object-cover rounded-t-lg"
+          />
+          <h2 class="text-2xl font-bold my-2 px-2">{{ class.title }}</h2>
+          <p class="text-gray-600 mb-4 px-2">{{ class.description }}</p>
+          <a [href]="class.link" class="text-blue-500 hover:text-blue-700 px-2"
+            >Learn More</a
+          >
         </div>
-      </div>  
+        }
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-100 pb-5">
+    <div class="mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-8 text-center">MEET YOUR INSTRUCTORS</h1>
+      <p class="text-lg mb-8 text-center">
+        We work with the best so you can feel your best. Our team of top
+        instructors will empower you to reach all your fitness and wellness
+        goals and enjoy the journey on the way.
+      </p>
+      <button class="py-2 px-4 w-full mb-8 border border-black  text-black rounded-md hover:bg-black hover:text-white" (click)="navigateToInstructors()">
+        VIEW INSTRUCTORS
+      </button>
+      <div class="flex overflow-x-auto no-scrollbar h-[400px]">
+        @for (instructor of instructors; track instructor){
+        <div
+          class="bg-white rounded-lg shadow-md text-center cursor-pointer flex-none w-60 mr-4 pb-2 h-[260px]"
+        >
+          <img
+            [src]="instructor.image"
+            alt="Fitness"
+            class="w-full h-[160px] object-cover rounded-t-lg"
+          />
+          <h2 class="text-2xl font-bold my-2 px-2">{{ instructor.name }}</h2>
+          <p class="text-gray-600 mb-4 px-2">{{ instructor.title }}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-100 pb-5">
+    <div class="mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-4 text-center">CHECK OUT OUR BLOG</h1>
+      <p class="text-lg mb-8 text-center">
+        Weekly inspiration for mindful living. Discover yoga sequences, short
+        workouts, recipes, and mindfulness tips from the experts.
+      </p>
+      <button class="py-2 px-4 w-full mb-8 border border-black  text-black rounded-md hover:bg-black hover:text-white" (click)="navigateToBlog()">
+        VIEW BLOG
+      </button>
+      <div class="flex overflow-x-auto no-scrollbar h-[400px]">
+        @for (blog of blogs; track blog){
+        <div
+          class="bg-white rounded-lg shadow-md text-center cursor-pointer flex-none w-60 mr-4 pb-2 h-[360px]"
+        >
+          <img
+            [src]="blog.image"
+            alt="Fitness"
+            class="w-full h-[160px] object-cover rounded-t-lg"
+          />
+          <h2 class="text-base font-bold my-2 px-2">{{ blog.title }}</h2>
+          <p class="text-gray-600 mb-4 px-2 text-sm">{{ blog.description }}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="relative">
+    <img [src]="backgroundImageUrl" alt="Background Image" class="w-full h-[400px] object-cover">
+    <div class="inset-0 flex items-center justify-center">
+      <div class="text-center px-10">
+        <h1 class="text-4xl font-bold my-4 drop-shadow-md">TRANSFORM YOUR LIFE IN 30 DAYS</h1>
+        <p class="mb-8">Get started today with free access to thousands of fitness and wellness classes.</p>
+        <button class="bg-black py-3 px-6 text-white rounded-full hover:bg-gray-800 transition duration-300">START YOUR FREE TRIAL</button>
+      </div>
+    </div>
+  </div>
 </section>
 <app-footer></app-footer>
