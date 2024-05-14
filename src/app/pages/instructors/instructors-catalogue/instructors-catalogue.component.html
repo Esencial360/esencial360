@@ -2,7 +2,7 @@
 <div class="bg-white">
   <app-page-title [pageTitle]="'instructores'"></app-page-title>
   <div class="flex justify-between">
-    <div>SORT BY: MOST POPULAR</div>
+    <app-instructor-filter></app-instructor-filter>
     <div class="text-right">
       <i class="fas fa-bars"></i>
     </div>
@@ -10,22 +10,22 @@
 
   <div class="mt-4 flex flex-col items-center justify-center">
     @for (instructor of instructors; track $index) {
-    <div class=" my-5 rounded-lg w-11/12 shadow-md cursor-pointer" (click)="onInstructor(instructor.id)">
+    <div class=" my-5 rounded-lg w-11/12 shadow-md cursor-pointer relative" (click)="onInstructor(instructor.id)">
       <div class="">
         <img
           [src]="instructor.imageUrl"
           [alt]="instructor.name"
-          class="w-full rounded-t-lg"
+          class="w-full rounded-t-lg object-cover h-[166px]"
         />
       </div>
       <div class="pl-4">
         <img
           [src]="instructor.imageUrl"
           [alt]="instructor.name"
-          class="rounded-full w-16 h-16 mb-2"
+          class="rounded-full w-16 h-16 mb-2 absolute border-2 border-white top-[41%]"
         />
-        <h2 class="text-lg font-bold">{{ instructor.name }}</h2>
-        <p class="text-gray-600 mb-5">{{ instructor.description }}</p>
+        <h2 class="text-2xl font-bold mt-10 montserrat-bold">{{ instructor.name }}</h2>
+        <p class="text-gray-600 mb-5 montserrat-normal">{{ instructor.description }}</p>
       </div>
     </div>
     }

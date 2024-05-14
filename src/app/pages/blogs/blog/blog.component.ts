@@ -1,14 +1,8 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-// interface Blog {
-//   id: number,
-//   title: string,
-//   summary: string,
-//   body: string,
-//   image: string
-// }
 interface Item {
+  id: number;
   imageUrl: string;
   title: string;
 }
@@ -25,7 +19,6 @@ interface Category {
 })
 export class BlogComponent implements OnInit {
   categories: Category[] = []
-  // blogs: Blog[] = []
 
   @Input()
   blogSelected!: string;
@@ -33,39 +26,17 @@ export class BlogComponent implements OnInit {
   constructor(private router: Router){}
 
   ngOnInit(): void {
-    // console.log('blogPage');
-    // this.blogs = [
-    //   {
-    //     id: 1,
-    //     title: 'blog1',
-    //     summary: 'lorem impsum lorem impsum lorem impsum lorem impsum',
-    //     body: 'lorem impsum lorem impsumlorem impsumlorem impsumlorem impsumlorem impsumlorem impsum lorem impsumlorem impsum lorem impsumlorem impsum',
-    //     image: 'path/to/image'
-    //   },
-    //   {
-    //     id: 2, 
-    //     title: 'blog2',
-    //     summary: 'lorem impsum lorem impsum lorem impsum lorem impsum',
-    //     body: 'lorem impsum lorem impsumlorem impsumlorem impsumlorem impsumlorem impsumlorem impsum lorem impsumlorem impsum lorem impsumlorem impsum',
-    //     image: 'path/to/image'
-    //   },
-    //   {
-    //     id: 3, 
-    //     title: 'blog3',
-    //     summary: 'lorem impsum lorem impsum lorem impsum lorem impsum',
-    //     body: 'lorem impsum lorem impsumlorem impsumlorem impsumlorem impsumlorem impsumlorem impsum lorem impsumlorem impsum lorem impsumlorem impsum',
-    //     image: 'path/to/image'
-    //   },
-    // ]
    this.categories = [
     {
       name: 'MOVEMENT',
       items: [
         {
+          id: 1,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'The Best Pilates Reformer Exercises to Strength & Flexibility Training'
         },
         {
+          id: 2,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'Pilates Reformer 101: Exercises, Benefits & More'
         },
@@ -76,10 +47,12 @@ export class BlogComponent implements OnInit {
       name: 'MINDFULNESS',
       items: [
         {
+          id: 3,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'What Is Body? Heres What You Need to Know'
         },
         {
+          id: 4,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: '10 Guided Meditations for Anxiety and Stress'
         },
@@ -90,14 +63,17 @@ export class BlogComponent implements OnInit {
       name: 'LIFESTYLE',
       items: [
         {
+          id: 5,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'How to Balance Your Hormones: 4 Tips From a Naturopath'
         },
         {
+          id: 6,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'What to Wear to Hot Yoga'
         },
         {
+          id: 7,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'Cycle Syncing: Exercise, Nutrition & Wellness in Every Phase'
         },
@@ -108,14 +84,17 @@ export class BlogComponent implements OnInit {
       name: 'NEWS',
       items: [
         {
+          id: 8,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'New Live Classes on Alo Moves'
         },
         {
+          id: 9,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: 'Alo Moves and the American Red Cross Partner to Bring Free Classes to Frontline Workers'
         },
         {
+          id: 10,
           imageUrl: '../../../../assets/images/yoga.jpg',
           title: '3 Things You Can Do Right Now to Help Save Our Oceans'
         },
@@ -127,6 +106,14 @@ export class BlogComponent implements OnInit {
 
   
   onNavigateToBlog(id: number) {
-    this.router.navigate([`/blog/${id}`])
+    this.router.navigate([`/blog/${id}`]).then(navigationSuccess => {
+      if (navigationSuccess) {
+        console.log(`Navigation to blog ${id} successful`);
+      } else {
+        console.error(`Navigation to blog ${id} failed`); 
+      }
+    }).catch(error => {
+      console.error(`An error occurred during navigation: ${error.message}`);
+    })
   }
 }

@@ -15,6 +15,7 @@ interface PreviewInstructor {
 })
 export class InstructorsCatalogueComponent implements OnInit, OnDestroy {
   instructors: PreviewInstructor[] = []
+  filteredInstructors: PreviewInstructor[] = [];
 
   constructor(private router: Router) {}
 
@@ -51,6 +52,21 @@ export class InstructorsCatalogueComponent implements OnInit, OnDestroy {
         imageUrl: '../../../../assets/images/yoga.jpg'
       }
     ];
+    this.filteredInstructors = this.instructors;
+  }
+
+  onFilterChange(filter: string) {
+    switch (filter) {
+      case 'Most Popular':
+        // Sort by popularity (you'll need to define the logic here)
+        break;
+      case 'Newest':
+        // Sort by newest (you'll need to define the logic here)
+        break;
+      case 'A-Z':
+        this.filteredInstructors = [...this.instructors].sort((a, b) => a.name.localeCompare(b.name));
+        break;
+    }
   }
 
   onInstructor(id: number) {

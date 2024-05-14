@@ -8,11 +8,13 @@ import { SingleClassComponent } from './pages/videos/single-class/single-class.c
 import { VideosCatalogueComponent } from './pages/videos/videos-catalogue/videos-catalogue.component';
 import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Default route (empty path)
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'blog/:id', component: SingleBlogComponent },
   { path: 'classes', component: VideosCatalogueComponent },
   { path: 'instructores', component: InstructorsCatalogueComponent },
   { path: 'instructores/:id', component: SingleInstructorComponent },

@@ -17,6 +17,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.component';
 import { SectionSneakPeakComponent } from './components/section-sneak-peak/section-sneak-peak.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
+import { InstructorFilterComponent } from './shared/instructor-filter/instructor-filter.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
     SingleBlogComponent,
     SectionSneakPeakComponent,
     PageTitleComponent,
+    InstructorFilterComponent,
   ],
   imports: [
     BrowserModule,
