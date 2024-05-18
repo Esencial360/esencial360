@@ -9,6 +9,8 @@ import { VideosCatalogueComponent } from './pages/videos/videos-catalogue/videos
 import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Default route (empty path)
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'instructores', component: InstructorsCatalogueComponent },
   { path: 'instructores/:id', component: SingleInstructorComponent },
   { path: 'user-settings', component: UserProfileComponent },
+  {path: 'iniciar-sesion', component: SignInComponent},
+  {path: 'subscribirse', component: SignUpComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }, // Catch-all for invalid routes (404)
 ];
 @NgModule({

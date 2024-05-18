@@ -1,50 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://your-api-url/login'; // Replace with your API URL
 
   constructor(private http: HttpClient) { }
 
-  register(userData: any): Observable<any> {
-    return this.http.post('/api/users', userData)
-      .pipe(
-        catchError(this.handleError)
-      );
+  login(username: string, password: string): Observable<any> {
+    const credentials = { user: username, pwd: password };
+    return this.http.post(this.apiUrl, credentials, { withCredentials: true, observe: 'response' });
   }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post('/api/users/login', credentials)
-      .pipe(
-        catchError(this.handleError)
-      );
+  logout(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true, observe: 'response' });
   }
 
-  logout() {
-    // Remove stored JWT from local storage or cookies
-    localStorage.removeItem('token');
+  refreshToken(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/refresh`, { withCredentials: true, observe: 'response' });
   }
 
-  isLoggedIn(): boolean {
-    // Check if JWT exists in local storage or cookies
-    return !!localStorage.getItem('token');
-  }
-
-  private handleError(error: any) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side or network error occurred. Handle it accordingly.
-      errorMessage = 'An error occurred: ' + error.error.message;
-    } else {
-      // Backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      errorMessage = `Backend returned code ${error.status}: ${error.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(errorMessage);
+  registerUser(username: string, password: string): Observable<any> {
+    const newUser = { user: username, pwd: password };
+    return this.http.post(`${this.apiUrl}/register`, newUser, { observe: 'response' });
   }
 }

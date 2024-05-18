@@ -1,5 +1,5 @@
 <div class="filter-container relative z-20" (click)="toggleDropdown()">
-  <div class="filter-selected text-sm font-medium flex items-center ml-5">
+  <div class="filter-selected text-sm font-medium flex items-center ml-5 uppercase">
     SORT BY: {{ activeFilter }} <span class="material-symbols-outlined">
         {{dropdownClosed ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
         </span>
@@ -8,7 +8,7 @@
         class="absolute bg-white rounded shadow-md mt-[140px] w-[160px]"
       >
         @for(filter of filters; track $index) {
-        <div class="pl-2 py-2 border-b" (click)="applyFilter(filter)">
+        <div class="pl-2 py-2 border-b uppercase" (click)="applyFilter(filter)">
           {{ filter }}
         </div>
         }

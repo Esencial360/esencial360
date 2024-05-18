@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Instructor } from '../Models/Instructor'; // Import the Instructor model interface
+
+@Injectable({
+  providedIn: 'root'
+})
+export class InstructorService {
+  private apiUrl = 'http://your-api-url/instructors'; // Replace with your API URL
+
+  constructor(private http: HttpClient) { }
+
+  getAllInstructors(): Observable<Instructor[]> {
+    return this.http.get<Instructor[]>(this.apiUrl);
+  }
+
+  getInstructor(id: string): Observable<Instructor> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Instructor>(url);
+  }
+
+  createInstructor(instructor: Instructor): Observable<Instructor> {
+    return this.http.post<Instructor>(this.apiUrl, instructor);
+  }
+
+  updateInstructor(instructor: Instructor): Observable<Instructor> {
+    const url = `${this.apiUrl}/${instructor._id}`;
+    return this.http.put<Instructor>(url, instructor);
+  }
+
+  deleteInstructor(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+}

@@ -18,6 +18,9 @@ import { SingleBlogComponent } from './pages/blogs/single-blog/single-blog.compo
 import { SectionSneakPeakComponent } from './components/section-sneak-peak/section-sneak-peak.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { InstructorFilterComponent } from './shared/instructor-filter/instructor-filter.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from './pages/sign-up/sign-up.component'; 
 
 @NgModule({
   declarations: [
@@ -37,11 +40,14 @@ import { InstructorFilterComponent } from './shared/instructor-filter/instructor
     SectionSneakPeakComponent,
     PageTitleComponent,
     InstructorFilterComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration()
