@@ -19,7 +19,7 @@ import { SectionSneakPeakComponent } from './components/section-sneak-peak/secti
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { InstructorFilterComponent } from './shared/instructor-filter/instructor-filter.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignUpComponent } from './pages/sign-up/sign-up.component'; 
 
 @NgModule({
@@ -47,7 +47,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()
