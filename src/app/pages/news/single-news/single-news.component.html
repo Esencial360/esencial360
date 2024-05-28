@@ -6,15 +6,15 @@
   >
     arrow_back
   </span>
-  @if(blog) {
+  @if(news) {
   <div>
-    <h2>{{ blog.title }}</h2>
-    <img [src]="'../../../../assets/images/yoga.jpg'" [alt]="blog.title" />
-    <p>{{ blog.description }}</p>
+    <h2>{{ news.title }}</h2>
+    <img [src]="'../../../../assets/images/yoga.jpg'" [alt]="news.title" />
+    <p>{{ news.description }}</p>
   </div>
-  } @if(!blog) {
+  } @if(!news) {
   <div>
-    <p>No blog found with that Id</p>
+    <p>No news found with that Id</p>
   </div>
   }
 </section>

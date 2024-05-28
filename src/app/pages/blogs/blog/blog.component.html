@@ -2,36 +2,28 @@
 <section>
   <app-page-title [pageTitle]="'BLOG'"></app-page-title>
   <div class="mx-auto w-11/12">
-    @for(category of categories; track category){
+    @for(category of categories; track category) {
     <div class="mb-8">
-      <h2 class="text-2xl font-bold mb-4">{{ category.name }}</h2>
+      <h2 class="text-2xl font-bold mb-4 uppercase">{{ category.name }}</h2>
       <div class="flex overflow-x-auto no-scrollbar h-[300px]">
-        @for(item of category.items; track item) {
+        @for(blogIds of category.blogs; track blogIds) {
+        @for(blog of blogs; track blog) { @if(blog._id === blogIds) {
         <div
-          (click)="onNavigateToBlog(item.id)"
-          class="bg-white rounded-lg shadow-md flex-none w-60 mr-4 pb-2 h-[280px]"
+          class="bg-white rounded-lg shadow-md flex-none w-60 mr-4 pb-2 h-[280px] "
+          (click)="onNavigateToBlog(blog._id)"
         >
           <img
-            [src]="item.imageUrl"
-            alt="{{ item.title }}"
+            [src]="'../../../../assets/images/yoga.jpg'"
+            [alt]="blog.title"
             class="mb-2 object-cover rounded-t-lg"
           />
-          <p>{{ item.title }}</p>
+          <h4>{{ blog.title }}</h4>
+          <p>{{ blog.description.slice(0, 20) }} ...</p>
         </div>
-        }
+        } } }
       </div>
-      <button
-        class="py-2 px-4 w-full mb-8 border border-black text-black rounded-md hover:bg-black hover:text-white"
-      >
-        MORE {{ category.name }}
-      </button>
     </div>
     }
-    <button
-      class="py-2 px-4 w-full mb-8 border border-black text-black rounded-md hover:bg-black hover:text-white"
-    >
-      START YOUR FREE TRIAL
-    </button>
   </div>
 </section>
 <app-footer></app-footer>

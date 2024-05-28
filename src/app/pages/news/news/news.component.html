@@ -1,0 +1,27 @@
+<app-header></app-header>
+<section>
+  <app-page-title [pageTitle]="'NEWS'"></app-page-title>
+  <div class="mx-auto w-11/12">
+
+    <div class="mb-8">
+      <div class="flex overflow-x-auto no-scrollbar h-[300px]">
+
+        @for(singleNews of news; track news) { 
+        <div
+          class="bg-white rounded-lg shadow-md flex-none w-60 mr-4 pb-2 h-[280px] "
+          (click)="onNavigateToNews(singleNews._id)"
+        >
+          <img
+            [src]="'../../../../assets/images/yoga.jpg'"
+            [alt]="singleNews.title"
+            class="mb-2 object-cover rounded-t-lg"
+          />
+          <h4>{{ singleNews.title }}</h4>
+          <p>{{ singleNews.description.slice(0, 20) }} ...</p>
+        </div>
+        } 
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

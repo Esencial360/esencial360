@@ -73,25 +73,36 @@
     <span class="material-symbols-outlined"> close </span>
   </button>
   <div class="container mx-auto px-4 mt-16">
-    <ul class="space-y-4 text-lg font-semibold">
-      <li class="mb-5">EXPLORE</li>
-      <li class="ml-2">CLASSES</li>
-      <li class="ml-2">SERIES</li>
-      <li class="ml-2">MEMBERSHIP</li>
-      <li class="border-t border-gray-700 pt-4 my-8"></li>
-      <li class="mb-5">SHOP</li>
-      <li class="ml-2">GEAR</li>
-      <li class="ml-2">CLOTHING</li>
-      <li class="flex items-center ml-2">
-        WELLNESS
-        <span class="bg-red-500 text-white ml-2 py-1 px-2 rounded-full text-xs"
-          >NEW</span
-        >
-      </li>
-      <li class="ml-2">GIFT CARDS</li>
-      <li class="border-t border-gray-700 pt-4 my-8"></li>
-      <li class="">SIGN IN</li>
-      <li class="">TRY FOR FREE</li>
-    </ul>
+    @if(userConnected) {
+      <ul class="space-y-4 text-lg font-semibold">
+        <li class="mb-5">YOGA</li>
+        <li class="ml-2">CLASES</li>
+        <li class="ml-2">INSTRUCTORES</li>
+        <li class="ml-2">NOSOTROS</li>
+        <li class="border-t border-gray-700 pt-4 my-8"></li>
+        <li class="mb-5">NOVEDADES</li>
+        <li class="ml-2">NEWS</li>
+        <li class="ml-2">BLOG</li>
+        <li class="border-t border-gray-700 pt-4 my-8"></li>
+        <li class="" (click)="onLogout()">LOGOUT</li>
+        <li class="" (click)="onContact()">CONTACTANOS</li>
+      </ul>
+    }
+    @if(!userConnected) {
+      <ul class="space-y-4 text-lg font-semibold">
+        <li class="mb-5">YOGA</li>
+        <li class="ml-2">CLASES</li>
+        <li class="ml-2">INSTRUCTORES</li>
+        <li class="ml-2">NOSOTROS</li>
+        <li class="border-t border-gray-700 pt-4 my-8"></li>
+        <li class="mb-5">NOVEDADES</li>
+        <li class="ml-2">NEWS</li>
+        <li class="ml-2">BLOG</li>
+        <li class="border-t border-gray-700 pt-4 my-8"></li>
+        <li class="" (click)="onSignIn()">SIGN IN</li>
+        <li class="" (click)="onSignUp()">TRY FOR FREE</li>
+        <li class="" (click)="onContact()">CONTACTANOS</li>
+      </ul>
+    }
   </div>
 </section>

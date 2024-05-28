@@ -7,7 +7,7 @@ import { Instructor } from '../Models/Instructor'; // Import the Instructor mode
   providedIn: 'root'
 })
 export class InstructorService {
-  private apiUrl = 'http://your-api-url/instructors'; // Replace with your API URL
+  private apiUrl = 'http://localhost:3000/instructors';
 
   constructor(private http: HttpClient) { }
 

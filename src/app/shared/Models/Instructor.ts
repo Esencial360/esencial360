@@ -1,5 +1,7 @@
 export interface Instructor {
     _id: string,
     firstname: string, 
-    lastname: string
+    lastname: string,
+    title: string, 
+    description: string
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InstructorService } from '../../shared/services/instructor.service';
+import { BlogService } from '../../shared/services/blog.service';
+import { Blog } from '../../shared/Models/Blog';
+import { Instructor } from '../../shared/Models/Instructor';
 
 interface ClassOverview {
   image: string, 
@@ -28,11 +32,11 @@ interface BlogOverview {
 export class LandingComponent implements OnInit {
 
   classes: ClassOverview[] = []
-  instructors: InstructorsOverview[] = []
-  blogs: BlogOverview[] = []
+  instructors: Instructor[] = []
+  blogs: Blog[] = []
   backgroundImageUrl = '../../../assets/images/yoga.jpg';
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private blogService: BlogService, private instructorService: InstructorService){}
 
   ngOnInit(): void {
     this.classes = [
@@ -56,71 +60,33 @@ export class LandingComponent implements OnInit {
       },
     ]
 
-    this.instructors = [
-      {
-        image: '../../../assets/images/yoga.jpg',
-        name: 'John Doe',
-        title: 'Yoga Instructor'
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        name: 'John Doe',
-        title: 'Yoga Instructor'
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        name: 'John Doe',
-        title: 'Yoga Instructor'
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        name: 'John Doe',
-        title: 'Yoga Instructor'
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        name: 'John Doe',
-        title: 'Yoga Instructor'
-
-      }
-    ]
-    this.blogs = [
-      {
-        image: '../../../assets/images/yoga.jpg',
-        title: 'CHECK IN WITH YOURSELF: 20 QUESTIONS FOR YOUR EMOTIONAL WELLNESS',
-        description: 'Need some inspiration on questions for self-reflection? We asked a few of our Alo Moves '
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        title: 'CHECK IN WITH YOURSELF: 20 QUESTIONS FOR YOUR EMOTIONAL WELLNESS',
-        description: 'Need some inspiration on questions for self-reflection? We asked a few of our Alo Moves '
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        title: 'CHECK IN WITH YOURSELF: 20 QUESTIONS FOR YOUR EMOTIONAL WELLNESS',
-        description: 'Need some inspiration on questions for self-reflection? We asked a few of our Alo Moves '
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        title: 'CHECK IN WITH YOURSELF: 20 QUESTIONS FOR YOUR EMOTIONAL WELLNESS',
-        description: 'Need some inspiration on questions for self-reflection? We asked a few of our Alo Moves '
-
-      },
-      {
-        image: '../../../assets/images/yoga.jpg',
-        title: 'CHECK IN WITH YOURSELF: 20 QUESTIONS FOR YOUR EMOTIONAL WELLNESS',
-        description: 'Need some inspiration on questions for self-reflection? We asked a few of our Alo Moves '
-
-      },
-    ]
+    this.fetchBlogs()
+    this.fetchInstructors()
   }
+
+  async fetchBlogs() {
+     await this.blogService.getAllBlogs().subscribe(
+      (blogs: Blog[]) => {
+        this.blogs = blogs;
+        console.log(this.blogs)
+      },
+      (error) => {
+        console.error('Error fetching blogs:', error);
+      }
+    );
+  }
+
+  async fetchInstructors() {
+    await this.instructorService.getAllInstructors().subscribe(
+     (instructors: Instructor[]) => {
+       this.instructors = instructors;
+       console.log(this.instructors)
+     },
+     (error) => {
+       console.error('Error fetching blogs:', error);
+     }
+   );
+ }
 
   navigateToBlog() {
     this.router.navigateByUrl('/blog').then(navigationSuccess => {

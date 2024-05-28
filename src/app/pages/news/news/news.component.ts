@@ -1,18 +1,19 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { BlogService } from '../../../shared/services/blog.service';
-import { Blog } from '../../../shared/Models/Blog';
-import { Category } from '../../../shared/Models/Category';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { NewsService } from '../../../shared/services/news.service';
+import { Category } from '../../../shared/Models/Category';
+import { News } from '../../../shared/Models/News';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrl: './blog.component.css',
+  selector: 'app-news',
+  templateUrl: './news.component.html',
+  styleUrl: './news.component.css'
 })
-export class BlogComponent implements OnInit {
-  blogs: Blog[] = [];
+export class NewsComponent implements OnInit {
+
+  news: News[] = [];
   categories: Category[] = [];
   imageId = '363849589bd5e9ef22f015490ee80ac1'; // Example ID from MongoDB
   safeImageUrl: SafeUrl = '';
@@ -22,22 +23,22 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private blogService: BlogService,
+    private newsService: NewsService,
     private http: HttpClient,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.fetchBlogs();
-    this.fetchCategories();
+    // this.fetchCategories();
     this.loadImage();
   }
 
   async fetchBlogs() {
-    await this.blogService.getAllBlogs().subscribe(
-      (blogs: Blog[]) => {
-        this.blogs = blogs;
-        console.log(this.blogs);
+    await this.newsService.getAllNews().subscribe(
+      (news: News[]) => {
+        this.news = news;
+        console.log(this.news);
       },
       (error) => {
         console.error('Error fetching blogs:', error);
@@ -45,21 +46,21 @@ export class BlogComponent implements OnInit {
     );
   }
 
-  async fetchCategories() {
-    await this.blogService.getAllCategories().subscribe(
-      (categories: Category[]) => {
-        this.categories = categories;
-        console.log(this.categories);
-      },
-      (error) => {
-        console.error('Error fetching categories:', error);
-      }
-    );
-  }
+  // async fetchCategories() {
+  //   await this.blogService.getAllCategories().subscribe(
+  //     (categories: Category[]) => {
+  //       this.categories = categories;
+  //       console.log(this.categories);
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching categories:', error);
+  //     }
+  //   );
+  // }
 
-  onNavigateToBlog(id: string) {
+  onNavigateToNews(id: string) {
     this.router
-      .navigate([`/blog/${id}`])
+      .navigate([`/noticias/${id}`])
       .then((navigationSuccess) => {
         if (navigationSuccess) {
           console.log(`Navigation to blog ${id} successful`);
@@ -87,4 +88,5 @@ export class BlogComponent implements OnInit {
       },
     });
   }
+
 }

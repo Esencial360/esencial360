@@ -1,6 +1,7 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { burgerMenuAnimation } from '../animations/burger-menu.animations';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,14 @@ import { burgerMenuAnimation } from '../animations/burger-menu.animations';
   animations: [burgerMenuAnimation],
 })
 export class HeaderComponent {
+
+  @Input()
+  userConnected!: boolean;
+
   isOpen: boolean = false;
 
-
-
-  constructor(private route: Router, private renderer: Renderer2) {}
+  constructor(private route: Router, private renderer: Renderer2, private authService: AuthService) {}
   
-
-  onContact() {
-    this.route.navigate(['/contact'])
-  }
 
   onHome() {
     this.route.navigate([''])
@@ -26,6 +25,29 @@ export class HeaderComponent {
 
   onMenu() {
     this.route.navigate(['/menu'])
+  }
+
+  onSignIn() {
+    this.route.navigate(['/iniciar-sesion'])
+  }
+
+  onSignUp() {
+    this.route.navigate(['/subscribirse'])
+  }
+
+  onContact() {
+    this.route.navigate(['/contacto'])
+  }
+
+  onLogout() {
+   this.authService.logout().subscribe(
+    (response) => {
+      console.log('Session ended successfully:', response);
+    },
+    (error) => {
+      console.error('Error in logout:', error);
+    }
+   )
   }
 
   

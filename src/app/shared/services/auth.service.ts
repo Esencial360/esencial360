@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://your-api-url/login'; // Replace with your API URL
+  private apiUrl = 'http://localhost:3000'; // Replace with your API URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string): Observable<any> {
-    const credentials = { user: username, pwd: password };
-    return this.http.post(this.apiUrl, credentials, { withCredentials: true, observe: 'response' });
+    const credentials = { email: username, pwd: password };
+    return this.http.post(`${this.apiUrl}/auth`, credentials, { withCredentials: true, observe: 'response' });
   }
 
   logout(): Observable<any> {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('userEmail');
+    this.router.navigate(['/login']);
     return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true, observe: 'response' });
   }
 
@@ -23,8 +27,8 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/refresh`, { withCredentials: true, observe: 'response' });
   }
 
-  registerUser(username: string, password: string): Observable<any> {
-    const newUser = { user: username, pwd: password };
+  registerUser(email: string, firstname: string, lastname: string, password: string): Observable<any> {
+    const newUser = { email: email, firstname: firstname, lastname: lastname, pwd: password };
     return this.http.post(`${this.apiUrl}/register`, newUser, { observe: 'response' });
   }
 }

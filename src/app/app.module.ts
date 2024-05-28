@@ -21,6 +21,14 @@ import { InstructorFilterComponent } from './shared/instructor-filter/instructor
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignUpComponent } from './pages/sign-up/sign-up.component'; 
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
+import { ForgotComponent } from './pages/forgot/forgot.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { NewBlogComponent } from './pages/blogs/new-blog/new-blog.component';
+import { NewsComponent } from './pages/news/news/news.component';
+import { NewNewsComponent } from './pages/news/new-news/new-news.component';
+import { SingleNewsComponent } from './pages/news/single-news/single-news.component';
 
 @NgModule({
   declarations: [
@@ -42,16 +50,24 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     InstructorFilterComponent,
     SignInComponent,
     SignUpComponent,
+    UserDashboardComponent,
+    ForgotComponent,
+    ContactComponent,
+    NewBlogComponent,
+    NewsComponent,
+    NewNewsComponent,
+    SingleNewsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule, 
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent]
 })

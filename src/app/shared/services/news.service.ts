@@ -7,7 +7,7 @@ import { News } from '../Models/News'; // Import the News model interface
   providedIn: 'root'
 })
 export class NewsService {
-  private apiUrl = 'http://your-api-url/news'; // Replace with your API URL
+  private apiUrl = 'http://localhost:3000/news'; // Replace with your API URL
 
   constructor(private http: HttpClient) { }
 
