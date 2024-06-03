@@ -1,11 +1,6 @@
-
-@if (authService.user$ | async; as user) {
-    <div>
-        Bienvenido {{user.given_name}}
-    </div>
-}
-<app-classes-catalogue [collectionList]="collectionList"></app-classes-catalogue>
-<!-- @for(link of links; track link) {
+<app-header></app-header>
+<section>
+    @for(link of links; track link) {
     <div style="position: relative; padding-top: 56.25%">
         <iframe
           [src]="link"
@@ -15,4 +10,6 @@
           allowfullscreen="true"
         ></iframe>
       </div>
-} -->
+}
+</section>
+<app-footer></app-footer>

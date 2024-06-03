@@ -1,1 +1,74 @@
-<p>user-profile works!</p>
+<app-header></app-header>
+<app-page-title [pageTitle]="'AJUSTES'"></app-page-title>
+<div class="flex justify-between">
+    <div class="filter-container relative z-20 w-full" (click)="toggleDropdown()">
+        <div class="filter-selected text-sm font-medium flex items-center justify-center uppercase">
+           {{ activeFilter }} <span class="material-symbols-outlined">
+              {{dropdownClosed ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
+              </span>
+          @if(!dropdownClosed) {
+              <div
+              class="absolute bg-white rounded shadow-md mt-[140px] w-[160px]"
+            >
+              @for(filter of filters; track $index) {
+              <div class="pl-2 py-2 border-b uppercase" (click)="applyFilter(filter)">
+                {{ filter }}
+              </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+</div>
+@if(activeFilter === 'EDITA TU PERFIL') {
+    <div>
+        @if(authService.user$ | async; as user) {
+            <div>
+              <div>
+                <img [src]="user.picture" alt="user profile picture" />
+                <h2>{{ user.name }}</h2>
+              </div>
+            </div>
+            }
+    </div>
+}
+
+@if(activeFilter === 'CAMBIA TU CONTRASEÑA') {
+    <div>
+        <h2>Change Password</h2>
+        <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="currentPassword">Current Password:</label>
+            <input type="password" id="currentPassword" formControlName="currentPassword" required>
+            <div *ngIf="passwordForm.controls['currentPassword'].invalid && passwordForm.controls['currentPassword'].touched">
+              <p>Current password is required.</p>
+            </div>
+          </div>
+          <div>
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" formControlName="newPassword" required>
+            <div *ngIf="passwordForm.controls['newPassword'].invalid && passwordForm.controls['newPassword'].touched">
+              <p>New password is required.</p>
+            </div>
+          </div>
+          <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
+            <div *ngIf="passwordForm.controls['confirmPassword'].invalid && passwordForm.controls['confirmPassword'].touched">
+              <p>Confirm password is required.</p>
+            </div>
+            <div *ngIf="passwordForm.hasError('mismatch')">
+              <p>New password and confirm password do not match.</p>
+            </div>
+          </div>
+          <button type="submit" [disabled]="passwordForm.invalid">Change Password</button>
+        </form>
+        <p *ngIf="message">{{ message }}</p>
+      </div>
+}
+
+@if(activeFilter === 'MANEJA TU SUBSCRIPCION') {
+    <div></div>
+}
+
+<app-footer></app-footer>

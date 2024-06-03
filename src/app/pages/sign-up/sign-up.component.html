@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="flex flex-col items-center min-h-screen bg-gray-100 raleway-regular">
-  @if (firstStep) {
+  <!-- @if (firstStep) {
 <app-page-title [pageTitle]="'SUBSCRIBETE'"></app-page-title>
   <div class="w-11/12 max-w-md p-8 bg-white rounded-lg shadow-md">
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
@@ -130,7 +130,8 @@
       </button>
     </div>
   </div>
-  } @if(secondStep) {
+  } -->
+  @if(firstStep) { 
   <div class="max-w-md mx-auto px-6">
     <div class="text-lg font-semibold mb-4">Step 2 of 3</div>
     <div class="text-2xl font-bold mb-2">CHOOSE YOUR PLAN</div>

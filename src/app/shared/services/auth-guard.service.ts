@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
 
     if (accessToken) {
       // Token is present, allow access
+      console.log('accessToken')
       return true;
     } else {
       // Token is not present, redirect to login page

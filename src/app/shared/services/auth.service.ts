@@ -18,9 +18,9 @@ export class AuthService {
 
   logout(): Observable<any> {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('userEmail');
-    this.router.navigate(['/login']);
-    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true, observe: 'response' });
+    localStorage.removeItem('roles');
+    this.router.navigate(['/']);
+    return this.http.get(`${this.apiUrl}/logout`,  { withCredentials: true, observe: 'response' });
   }
 
   refreshToken(): Observable<any> {

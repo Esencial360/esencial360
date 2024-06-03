@@ -18,10 +18,13 @@ import { NewBlogComponent } from './pages/blogs/new-blog/new-blog.component';
 import { NewsComponent } from './pages/news/news/news.component';
 import { NewNewsComponent } from './pages/news/new-news/new-news.component';
 import { SingleNewsComponent } from './pages/news/single-news/single-news.component';
-import { AuthGuard } from './shared/services/auth-guard.service';
+import { AuthGuard } from '@auth0/auth0-angular';
+import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor-sing-up.component';
+import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Default route (empty path)
+  // { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
   { path: 'blog', component: BlogComponent },
@@ -29,15 +32,18 @@ const routes: Routes = [
   { path: 'classes', component: VideosCatalogueComponent },
   { path: 'instructores', component: InstructorsCatalogueComponent },
   { path: 'instructores/:id', component: SingleInstructorComponent },
-  { path: 'user-settings', component: UserProfileComponent },
+  { path: 'user-settings', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'iniciar-sesion', component: SignInComponent },
   { path: 'subscribirse', component: SignUpComponent },
   { path: 'olvido', component: ForgotComponent },
   { path: 'contacto', component: ContactComponent },
-  { path: 'nuevo-blog', component: NewBlogComponent },
+  { path: 'nuevo-blog', component: NewBlogComponent, canActivate: [AuthGuard] },
   { path: 'noticias', component: NewsComponent },
-  { path: 'nueva-noticia', component: NewNewsComponent },
-  { path: 'noticias/:id', component: SingleNewsComponent },
+  { path: 'nueva-noticia', component: NewNewsComponent, canActivate: [AuthGuard] },
+  { path: 'noticias/:id', component: SingleNewsComponent,  },
+  {path: 'carrera-instructor', component: InstructorSingUpComponent}, 
+  {path: 'ajustes', component: UserProfileComponent},
+  {path: 'collection/:id', component: SingleCollectionClassesComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }, // Catch-all for invalid routes (404)
 ];
 @NgModule({

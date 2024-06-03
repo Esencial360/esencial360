@@ -1,7 +1,9 @@
-import { Component, Renderer2, Input } from '@angular/core';
+import { Component, Renderer2, Input, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { burgerMenuAnimation } from '../animations/burger-menu.animations';
-import { AuthService } from '../services/auth.service';
+// import { AuthService } from '../services/auth.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,53 +12,49 @@ import { AuthService } from '../services/auth.service';
   animations: [burgerMenuAnimation],
 })
 export class HeaderComponent {
-
   @Input()
   userConnected!: boolean;
 
   isOpen: boolean = false;
 
-  constructor(private route: Router, private renderer: Renderer2, private authService: AuthService) {}
-  
+  constructor(
+    private route: Router,
+    private renderer: Renderer2,
+    public authService: AuthService,
+    @Inject(DOCUMENT) public document: Document
+  ) {}
 
   onHome() {
-    this.route.navigate([''])
+    this.route.navigate(['']);
   }
 
   onMenu() {
-    this.route.navigate(['/menu'])
+    this.route.navigate(['/menu']);
   }
 
   onSignIn() {
-    this.route.navigate(['/iniciar-sesion'])
+    this.route.navigate(['/iniciar-sesion']);
   }
 
   onSignUp() {
-    this.route.navigate(['/subscribirse'])
+    this.route.navigate(['/subscribirse']);
   }
 
   onContact() {
-    this.route.navigate(['/contacto'])
+    this.route.navigate(['/contacto']);
   }
 
-  onLogout() {
-   this.authService.logout().subscribe(
-    (response) => {
-      console.log('Session ended successfully:', response);
-    },
-    (error) => {
-      console.error('Error in logout:', error);
-    }
-   )
+  onUserSettings () {
+    this.route.navigate(['/ajustes'])
   }
-
   
+
   toggle() {
     this.isOpen = !this.isOpen;
     if (this.isOpen) {
-          this.renderer.addClass(document.body, 'menu-opened');
-        } else {
-          this.renderer.removeClass(document.body, 'menu-opened');
-        }
+      this.renderer.addClass(document.body, 'menu-opened');
+    } else {
+      this.renderer.removeClass(document.body, 'menu-opened');
+    }
   }
 }

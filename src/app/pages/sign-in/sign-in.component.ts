@@ -84,7 +84,7 @@ export class SignInComponent {
           console.log('Login successful');
           this.showAlert = false;
           localStorage.setItem('accessToken', response.body.accessToken);
-          localStorage.setItem('userEmail', response.body.email);
+          localStorage.setItem('roles', response.body.roles);
           this.router.navigate(['/dashboard']);
         } else {
           console.log('Login failed');

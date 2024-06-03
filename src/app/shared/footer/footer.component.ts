@@ -14,4 +14,8 @@ export class FooterComponent {
     this.route.navigate(['/contacto'])
   }
 
+  onBecomeInstructor() {
+    this.route.navigate(['/carrera-instructor'])
+  }
+
 }

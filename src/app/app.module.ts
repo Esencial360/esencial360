@@ -21,7 +21,7 @@ import { InstructorFilterComponent } from './shared/instructor-filter/instructor
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignUpComponent } from './pages/sign-up/sign-up.component'; 
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch  } from '@angular/common/http';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -29,6 +29,11 @@ import { NewBlogComponent } from './pages/blogs/new-blog/new-blog.component';
 import { NewsComponent } from './pages/news/news/news.component';
 import { NewNewsComponent } from './pages/news/new-news/new-news.component';
 import { SingleNewsComponent } from './pages/news/single-news/single-news.component';
+import { provideAuth0, AuthModule } from '@auth0/auth0-angular';
+import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor-sing-up.component';
+import { ClassesCatalogueComponent } from './pages/classes/classes-catalogue/classes-catalogue.component';
+import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +62,9 @@ import { SingleNewsComponent } from './pages/news/single-news/single-news.compon
     NewsComponent,
     NewNewsComponent,
     SingleNewsComponent,
+    InstructorSingUpComponent,
+    ClassesCatalogueComponent,
+    SingleCollectionClassesComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,10 +72,20 @@ import { SingleNewsComponent } from './pages/news/single-news/single-news.compon
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
+    provideHttpClient(withFetch()), 
+    [
+      provideAuth0({
+        domain: 'dev-agnj33flhghfk2oe.us.auth0.com',
+        clientId: 'nfEdcp563XxuplkX7qj9BAMWNLKxdp8w',
+        authorizationParams: {
+          redirect_uri: 'http://localhost:4200'
+        }
+      }),
+    ]
   ],
   bootstrap: [AppComponent]
 })
