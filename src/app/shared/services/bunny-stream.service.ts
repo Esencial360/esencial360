@@ -50,4 +50,43 @@ export class BunnystreamService {
       })
     );
   }
+
+  createVideo(title: string, collectionId: string, thumbnailTime?: number) {
+    const url = `https://video.bunnycdn.com/library/248742/videos`;
+    const headers = { 'AccessKey': this.apiKey };
+    const body = {
+      title: title,
+      collectionId: collectionId,
+      thumnailTime: thumbnailTime
+    };
+    return this.http.post(url, body, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  uploadVideo(videoId: string, file: File, thumbnailTime?: number) {
+    const url = `https://video.bunnycdn.com/library/248742/videos/${videoId}`;
+    const headers = {
+      'AccessKey': this.apiKey
+    };
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+  
+    return this.http.put(url, file, { headers  }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(() => errorMessage);
+  }
 }

@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { BunnystreamService } from '../../shared/services/bunny-stream.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -19,7 +20,8 @@ export class UserDashboardComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private bunnystreamService: BunnystreamService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -39,6 +41,12 @@ export class UserDashboardComponent implements OnInit {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  onUploadVideo() {
+    this.router.navigateByUrl(
+      '/nuevo-video'
+    )
   }
 
   // getVideos() {

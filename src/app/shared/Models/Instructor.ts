@@ -3,5 +3,6 @@ export interface Instructor {
     firstname: string, 
     lastname: string,
     title: string, 
-    description: string
+    description: string,
+    videos?: string[]
 }

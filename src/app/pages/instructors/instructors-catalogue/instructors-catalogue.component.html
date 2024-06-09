@@ -7,7 +7,7 @@
 
   <div class="mt-4 flex flex-col items-center justify-center">
     @for (instructor of instructors; track $index) {
-    <div class=" my-5 rounded-lg w-11/12 shadow-md cursor-pointer relative" (click)="onInstructor(instructor.id)">
+    <div class=" my-5 rounded-lg w-11/12 shadow-md cursor-pointer relative" (click)="onInstructor(instructor._id)">
       <div class="">
         <img
           [src]="'../../../../assets/images/yoga.jpg'"

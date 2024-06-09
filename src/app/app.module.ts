@@ -8,7 +8,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ButtonComponent } from './shared/button/button.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { VideosCatalogueComponent } from './pages/videos/videos-catalogue/videos-catalogue.component';
-import { SingleClassComponent } from './pages/videos/single-class/single-class.component';
 import { InstructorsCatalogueComponent } from './pages/instructors/instructors-catalogue/instructors-catalogue.component';
 import { SingleInstructorComponent } from './pages/instructors/single-instructor/single-instructor.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -33,6 +32,8 @@ import { provideAuth0, AuthModule } from '@auth0/auth0-angular';
 import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor-sing-up.component';
 import { ClassesCatalogueComponent } from './pages/classes/classes-catalogue/classes-catalogue.component';
 import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
+import { UploadVideoComponent } from './pages/classes/upload-video/upload-video.component';
+import { SingleClassComponent } from './pages/classes/single-class/single-class.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { SingleCollectionClassesComponent } from './pages/classes/single-collect
     InstructorSingUpComponent,
     ClassesCatalogueComponent,
     SingleCollectionClassesComponent,
+    UploadVideoComponent,
   ],
   imports: [
     BrowserModule,

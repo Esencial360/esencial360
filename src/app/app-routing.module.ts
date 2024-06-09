@@ -4,7 +4,6 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AboutComponent } from './pages/about/about.component';
 import { InstructorsCatalogueComponent } from './pages/instructors/instructors-catalogue/instructors-catalogue.component';
 import { SingleInstructorComponent } from './pages/instructors/single-instructor/single-instructor.component';
-import { SingleClassComponent } from './pages/videos/single-class/single-class.component';
 import { VideosCatalogueComponent } from './pages/videos/videos-catalogue/videos-catalogue.component';
 import { BlogComponent } from './pages/blogs/blog/blog.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -21,6 +20,8 @@ import { SingleNewsComponent } from './pages/news/single-news/single-news.compon
 import { AuthGuard } from '@auth0/auth0-angular';
 import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor-sing-up.component';
 import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
+import { UploadVideoComponent } from './pages/classes/upload-video/upload-video.component';
+import { SingleClassComponent } from './pages/classes/single-class/single-class.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Default route (empty path)
@@ -43,7 +44,9 @@ const routes: Routes = [
   { path: 'noticias/:id', component: SingleNewsComponent,  },
   {path: 'carrera-instructor', component: InstructorSingUpComponent}, 
   {path: 'ajustes', component: UserProfileComponent},
+  {path: 'nuevo-video', component: UploadVideoComponent},
   {path: 'collection/:id', component: SingleCollectionClassesComponent},
+  {path: 'collection/:collectionName/:id', component: SingleClassComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }, // Catch-all for invalid routes (404)
 ];
 @NgModule({

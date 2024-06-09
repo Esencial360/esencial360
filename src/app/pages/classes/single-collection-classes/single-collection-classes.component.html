@@ -1,6 +1,6 @@
 <app-header></app-header>
 <section>
-    @for(link of links; track link) {
+    <!-- @for(link of links; track link) {
     <div style="position: relative; padding-top: 56.25%">
         <iframe
           [src]="link"
@@ -10,6 +10,26 @@
           allowfullscreen="true"
         ></iframe>
       </div>
-}
+} -->
+
+<div class="mt-4 flex flex-col items-center justify-center">
+  @for (video of videos; track videos){
+    <div
+      class="bg-white rounded-lg shadow-md flex-none w-60 mr-4 pb-2 h-[260px]"
+      (click)="onWatchSingleClass(video.video.guid)"
+    >
+      <img
+      [src]="video.safeThumbnail"
+        alt="Fitness"
+        class="w-full h-[160px] object-cover rounded-t-lg"
+      />
+      <h2 class="text-2xl font-bold my-2 px-2">{{ video.video.title }}</h2>
+      <!-- <p class="text-gray-600 mb-4 px-2">{{ class.description }}</p>
+      <a [href]="class.link" class="text-blue-500 hover:text-blue-700 px-2"
+        >Learn More</a
+      > -->
+    </div>
+    }
+</div>
 </section>
 <app-footer></app-footer>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { concatMap, from, map, toArray } from 'rxjs';
@@ -23,7 +23,8 @@ export class SingleCollectionClassesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bunnystreamService: BunnystreamService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -56,13 +57,14 @@ export class SingleCollectionClassesComponent implements OnInit {
   }
 
   getVideo(videoIds: any) {
-    if (videoIds.videoCount === 0) {
-    } else if (videoIds.videoCount === 1) {
+    const videoIdsArray = videoIds.previewVideoIds.split(',');
+    if (videoIdsArray.length === 0) {
+    } else if (videoIdsArray.length === 1) {
       this.bunnystreamService.getVideo(videoIds.previewVideoIds).subscribe(
         (response: any) => {
           this.videos = [response];
-          this.links = this.videos.map((video) => {
-            const link = `https://iframe.mediadelivery.net/embed/248742/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`;
+          this.videos = this.videos.map((video) => {
+            const link = `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`;
             return this.sanitizer.bypassSecurityTrustResourceUrl(link);
           });
         },
@@ -70,26 +72,40 @@ export class SingleCollectionClassesComponent implements OnInit {
           console.error('Error retrieving videos:', error);
         }
       );
-    } else if (videoIds.videoCount > 1) {
-      const videoIdsArray = videoIds.previewVideoIds.split(',');
+    } else if (videoIdsArray.length > 1) {
       from(videoIdsArray)
         .pipe(
           concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
-          map((video) =>
-            this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://iframe.mediadelivery.net/embed/248742/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`
-            )
-          ), // Create the sanitized link
+          map((video) => ({
+            video: video,
+            safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
+              `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`
+            ),
+          })),
           toArray()
         )
         .subscribe({
-          next: (links) => {
-            this.links = links;
+          next: (videos) => {
+            this.videos = videos;
+            console.log(this.links);
           },
           error: (error) => {
             console.error('Error retrieving videos:', error);
           },
         });
     }
+  }
+
+  onWatchSingleClass(id: string) {
+    this.router.navigate([`/collection/${this.collectionName}/${id}`]).then((navigationSuccess) => {
+      if (navigationSuccess) {
+        console.log('Navigation to class successful');
+      } else {
+        console.error('Navigation to class failed');
+      }
+    })
+    .catch((error) => {
+      console.error(`An error occurred during navigation: ${error.message}`);
+    });
   }
 }

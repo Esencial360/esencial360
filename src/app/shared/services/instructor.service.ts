@@ -25,8 +25,8 @@ export class InstructorService {
   }
 
   updateInstructor(instructor: Instructor): Observable<Instructor> {
-    const url = `${this.apiUrl}/${instructor._id}`;
-    return this.http.put<Instructor>(url, instructor);
+    console.log(instructor)
+    return this.http.put<Instructor>(this.apiUrl, instructor);
   }
 
   deleteInstructor(id: string): Observable<any> {
