@@ -34,6 +34,10 @@ import { ClassesCatalogueComponent } from './pages/classes/classes-catalogue/cla
 import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
 import { UploadVideoComponent } from './pages/classes/upload-video/upload-video.component';
 import { SingleClassComponent } from './pages/classes/single-class/single-class.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
 
 
 @NgModule({
@@ -67,6 +71,9 @@ import { SingleClassComponent } from './pages/classes/single-class/single-class.
     ClassesCatalogueComponent,
     SingleCollectionClassesComponent,
     UploadVideoComponent,
+    DialogComponent,
+    ClassStatisticsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -75,6 +82,7 @@ import { SingleClassComponent } from './pages/classes/single-class/single-class.
     ReactiveFormsModule,
     FormsModule, 
     HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     provideClientHydration(),
@@ -87,7 +95,9 @@ import { SingleClassComponent } from './pages/classes/single-class/single-class.
           redirect_uri: 'http://localhost:4200'
         }
       }),
-    ]
+    
+    provideAnimationsAsync()
+  ]
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { BunnystreamService } from '../../shared/services/bunny-stream.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { EmailService } from '../../shared/services/email.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -21,7 +22,8 @@ export class UserDashboardComponent implements OnInit {
     public authService: AuthService,
     private bunnystreamService: BunnystreamService,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private emailService: EmailService
   ) {}
 
   async ngOnInit() {
@@ -47,6 +49,26 @@ export class UserDashboardComponent implements OnInit {
     this.router.navigateByUrl(
       '/nuevo-video'
     )
+  }
+
+
+  sendTestEmail() {
+    const emailData = {
+      to: 'pablosalcido1@gmail.com',
+      subject: 'Test Email',
+      text: 'This is a test email.',
+      html: '<p>This is a <strong>test</strong> email.</p>'
+    };
+    this.emailService.sendEmail(emailData).subscribe({
+      next: (response) => {
+        console.log('Email sent successfully:', response);
+        // Handle success (e.g., show a success message)
+      },
+      error: (error) => {
+        console.error('Error sending email:', error);
+        // Handle error (e.g., show an error message)
+      }
+    });
   }
 
   // getVideos() {

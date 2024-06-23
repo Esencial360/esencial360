@@ -22,6 +22,7 @@ import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor
 import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
 import { UploadVideoComponent } from './pages/classes/upload-video/upload-video.component';
 import { SingleClassComponent } from './pages/classes/single-class/single-class.component';
+import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent }, // Default route (empty path)
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'nuevo-video', component: UploadVideoComponent},
   {path: 'collection/:id', component: SingleCollectionClassesComponent},
   {path: 'collection/:collectionName/:id', component: SingleClassComponent},
+  {path: 'estadisticas', component: ClassStatisticsComponent}, 
   { path: '**', redirectTo: '', pathMatch: 'full' }, // Catch-all for invalid routes (404)
 ];
 @NgModule({

@@ -60,18 +60,38 @@ export class SingleCollectionClassesComponent implements OnInit {
     const videoIdsArray = videoIds.previewVideoIds.split(',');
     if (videoIdsArray.length === 0) {
     } else if (videoIdsArray.length === 1) {
-      this.bunnystreamService.getVideo(videoIds.previewVideoIds).subscribe(
-        (response: any) => {
-          this.videos = [response];
-          this.videos = this.videos.map((video) => {
-            const link = `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`;
-            return this.sanitizer.bypassSecurityTrustResourceUrl(link);
-          });
+      // this.bunnystreamService.getVideo(videoIds.previewVideoIds).subscribe(
+      //   (response: any) => {
+      //     this.videos = [response];
+      //     this.links = this.videos.map((video) => {
+      //       const link = `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`;
+      //       return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+      //     });
+      //     console.log(this.videos)
+      //   },
+      //   (error) => {
+      //     console.error('Error retrieving videos:', error);
+      //   }
+      // );
+      from(videoIdsArray)
+      .pipe(
+        concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
+        map((video) => ({
+          video: video,
+          safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
+            `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`
+          ),
+        })),
+        toArray()
+      )
+      .subscribe({
+        next: (videos) => {
+          this.videos = videos;
         },
-        (error) => {
+        error: (error) => {
           console.error('Error retrieving videos:', error);
-        }
-      );
+        },
+      });
     } else if (videoIdsArray.length > 1) {
       from(videoIdsArray)
         .pipe(
@@ -87,7 +107,6 @@ export class SingleCollectionClassesComponent implements OnInit {
         .subscribe({
           next: (videos) => {
             this.videos = videos;
-            console.log(this.links);
           },
           error: (error) => {
             console.error('Error retrieving videos:', error);

@@ -57,3 +57,5 @@ body.menu-opened {
     display: none; /* Chrome, Safari, and Opera */
   }
   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

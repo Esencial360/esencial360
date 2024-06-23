@@ -77,6 +77,28 @@ export class BunnystreamService {
     );
   }
 
+  deleteVideo(videoId: string) {
+    const url = `https://video.bunnycdn.com/library/248742/videos/${videoId}`;
+    const headers = {
+      'AccessKey': this.apiKey
+    };
+
+    return this.http.delete(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getVideoStatistics() {
+    const url = `https://video.bunnycdn.com/library/248742/statistics`;
+    const headers = {
+      'AccessKey': this.apiKey
+    };
+
+    return this.http.get(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
