@@ -31,7 +31,7 @@ export class UserDashboardComponent implements OnInit {
       if (user) {
         console.log('User:', user);
         // Access the user's role(s) from the user object
-        const roles = user['https://dev-agnj33flhghfk2oe.us.auth0.com/roles'];
+        const roles = user['https://dev-syvyfpm6kjwu0kzp.us.auth0.com/roles'];
         console.log('User roles:', roles);
         // Perform any necessary actions based on the user's role(s)
       }

@@ -38,7 +38,7 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
-
+import { environment } from '../environments/environment.development';
 
 @NgModule({
   declarations: [
@@ -89,10 +89,10 @@ import { ClassStatisticsComponent } from './pages/classes/class-statistics/class
     provideHttpClient(withFetch()), 
     [
       provideAuth0({
-        domain: 'dev-agnj33flhghfk2oe.us.auth0.com',
-        clientId: 'nfEdcp563XxuplkX7qj9BAMWNLKxdp8w',
+        domain: environment.auth0.domain,
+        clientId: environment.auth0.clientId,
         authorizationParams: {
-          redirect_uri: 'http://localhost:4200'
+          redirect_uri: environment.auth0.redirectUri,
         }
       }),
     

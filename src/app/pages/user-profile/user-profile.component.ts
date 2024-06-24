@@ -73,7 +73,7 @@ export class UserProfileComponent implements OnInit {
   
     const userId = await this.authService.user$.subscribe(user => user?.sub);
   
-    const url = `https://dev-agnj33flhghfk2oe.us.auth0.com/api/v2/users/${userId}`;
+    const url = `https://dev-syvyfpm6kjwu0kzp.us.auth0.com/api/v2/users/${userId}`;
   
     const headers = {
       'Authorization': `Bearer ${accessToken}`,
