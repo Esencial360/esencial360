@@ -39,6 +39,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
 import { environment } from '../environments/environment.development';
+import { PricingPlanComponent } from './components/pricing-plan/pricing-plan.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { environment } from '../environments/environment.development';
     UploadVideoComponent,
     DialogComponent,
     ClassStatisticsComponent,
+    PricingPlanComponent,
     
   ],
   imports: [

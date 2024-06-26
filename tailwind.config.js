@@ -5,11 +5,13 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      pinkMain: '#f9659f',
-      bone: '#efe8dc',
-      pinkDarker: '#78344e',
-      white: '#ffffff',
-      black: '#000000'
+      white: '#F1EEE6',
+      black: '#000000',
+      strongBrown: '#362317',
+      lightBrown: '#825F3E',
+      veige: '#B89B80',
+      bone: '#DACBAE',
+      blue: '#48A2A1',
     },
   },
   plugins: [],

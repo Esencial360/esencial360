@@ -25,6 +25,13 @@ interface BlogOverview {
   description: string;
 }
 
+interface Service {
+  title: string;
+  image: string;
+  description?: string;
+  special?: boolean;
+}
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -34,6 +41,7 @@ export class LandingComponent implements OnInit {
   classes: ClassOverview[] = [];
   instructors: Instructor[] = [];
   blogs: Blog[] = [];
+  services: Service[] = [];
   backgroundImageUrl = '../../../assets/images/yoga.jpg';
 
   constructor(
@@ -66,6 +74,18 @@ export class LandingComponent implements OnInit {
           'Level up your workout with Pilates, Barre, HIIT, and much more',
         link: 'linkToClasses',
       },
+    ];
+
+    this.services = [
+      { title: 'YOGA', image: '../../../assets/images/yoga.jpg '},
+      { title: 'FITNESS', image: '../../../assets/images/yoga.jpg' },
+      { title: 'MINDFULNESS', image: '../../../assets/images/yoga.jpg' },
+      { title: 'ROUTINES', image: '../../../assets/images/yoga.jpg' },
+      { 
+        title: 'Ready to start your journey?', 
+        image: '../../../assets/images/yoga.jpg',
+        special: true
+      }
     ];
 
     this.fetchBlogs();
