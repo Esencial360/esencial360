@@ -1,13 +1,13 @@
 <app-header></app-header>
 <div class="bg-white">
-  <app-page-title [pageTitle]="'instructores'"></app-page-title>
+  <app-page-title [pageTitle]="'instructores'" [pageDescription]="'Descrube a nuestros instructores y transforma tu bienestar'"></app-page-title>
   <div class="flex justify-between">
     <app-instructor-filter></app-instructor-filter>
   </div>
 
-  <div class="mt-4 flex flex-col items-center justify-center">
+  <div class="mt-4 flex flex-col lg:flex-row lg:flex-wrap items-center justify-center">
     @for (instructor of instructors; track $index) {
-    <div class=" my-5 rounded-lg w-11/12 shadow-md cursor-pointer relative" (click)="onInstructor(instructor._id)">
+    <div class=" my-5 rounded-lg w-11/12 lg:w-3/12 lg:mx-5 shadow-md cursor-pointer relative" (click)="onInstructor(instructor._id)">
       <div class="">
         <img
           [src]="'../../../../assets/images/yoga.jpg'"

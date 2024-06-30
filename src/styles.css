@@ -12,6 +12,10 @@ body.menu-opened {
   overflow: hidden; 
 }
 
+body {
+  background-color: #F1EEE6;
+}
+
 .raleway-regular {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;

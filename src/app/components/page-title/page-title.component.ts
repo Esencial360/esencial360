@@ -11,10 +11,11 @@ export class PageTitleComponent implements OnInit {
   @Input()
   pageTitle!: string;
 
+  @Input()
+  pageDescription!: string 
+
 
   ngOnInit(): void {
-    console.log('pageTitle');
-    
   }
 
 }

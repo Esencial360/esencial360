@@ -35,11 +35,13 @@ import { SingleCollectionClassesComponent } from './pages/classes/single-collect
 import { UploadVideoComponent } from './pages/classes/upload-video/upload-video.component';
 import { SingleClassComponent } from './pages/classes/single-class/single-class.component';
 import { DialogComponent } from './shared/dialog/dialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
 import { environment } from '../environments/environment.development';
 import { PricingPlanComponent } from './components/pricing-plan/pricing-plan.component';
+import { NewsAndBlogsComponent } from './components/news-and-blogs/news-and-blogs.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { InstructorsOverviewComponent } from './components/instructors-overview/instructors-overview.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,9 @@ import { PricingPlanComponent } from './components/pricing-plan/pricing-plan.com
     DialogComponent,
     ClassStatisticsComponent,
     PricingPlanComponent,
+    NewsAndBlogsComponent,
+    BannerComponent,
+    InstructorsOverviewComponent,
     
   ],
   imports: [
@@ -83,8 +88,7 @@ import { PricingPlanComponent } from './components/pricing-plan/pricing-plan.com
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule, 
-    HttpClientModule,
-    MatDialogModule
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(),

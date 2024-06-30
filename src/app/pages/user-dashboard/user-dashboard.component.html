@@ -1,7 +1,17 @@
 @if (authService.user$ | async; as user) {
-<div>Bienvenido {{ user.given_name }}</div>
+<div class="flex items-center justify-around bg-white px-8 py-16 rounded-xl max-w-6xl mx-auto">
+  <div class="flex-1 pr-8">
+    <h2 class="!text-4xl font-bold text-strongBrown mb-4">Bienvenido {{ user.given_name }}</h2>
+    <p class="text-olive-600 text-lg">
+      Gira, fluye, equilibra y estira con esta colección de clases de yoga en español. 
+    </p>
+  </div>
+  <div class="w-1/2">
+    <img src="../../../assets/images/yoga.jpg" alt="Person doing yoga" class="rounded-xl object-cover w-full h-64">
+  </div>
+</div>
 }
-<button
+<!-- <button
   type="submit"
   (click)="sendTestEmail()"
   class="w-full py-2 px-4 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
@@ -14,10 +24,11 @@
   class="w-full py-2 px-4 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
 >
   SUBE UNA CLASE
-</button>
+</button> -->
 <app-classes-catalogue
   [collectionList]="collectionList"
 ></app-classes-catalogue>
+<app-instructors-overview></app-instructors-overview>
 <!-- @for(link of links; track link) {
     <div style="position: relative; padding-top: 56.25%">
         <iframe

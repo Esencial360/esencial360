@@ -12,7 +12,7 @@
       class="max-h-20 cursor-pointer rounded-lg"
       (click)="onHome()"
     />
-    <h3 class="text-white">esencial<span class="text-blue">360</span></h3>
+    <h3 class="text-strongBrown">esencial<span class="text-blue">360</span></h3>
   </div>
   <nav>
     <ul
@@ -22,9 +22,41 @@
         <a (click)="onHome()" class="hover:text-gray-400">Home</a>
       </li>
       <li class="mr-10">
-        <a (click)="onMenu()" class="hover:text-gray-400">Menu</a>
+        <a (click)="onMenu()" class="hover:text-gray-400">Yoga</a>
       </li>
-      <!-- <button (click)="onContact()" class="uppercase bg-bone rounded-full w-[170px] h-[70px] text-pinkMain">Contact us</button> -->
+      <li
+      class="mr-10"
+      (click)="authService.loginWithRedirect({ 
+        authorizationParams: {
+            screen_hint: 'signup',
+          }, appState: { target: '/subscribirse' }})"
+    >
+      SIGN UP
+    </li>
+      @if(authService.isAuthenticated$ | async) {
+        <li
+          class="mr-10"
+          (click)="
+            authService.logout({
+              logoutParams: { returnTo: document.location.origin }
+            })
+          "
+        >
+          LOGOUT
+        </li>
+        } @else {
+        <li class="mr-10" (click)="authService.loginWithRedirect()">SIGN IN</li>
+        } @if(authService.isAuthenticated$ | async) {
+        <li class="mr-10" (click)="onUserSettings()">SETTINGS</li>
+        }
+      <button class="group flex items-center rounded-full bg-lightBrown px-4 py-2 hover:bg-strongBrown transition-colors duration-200">
+        <span class="text-white text-sm font-medium">subscribirse</span>
+        <div class="ml-2 rounded-full bg-lightBrown w-5 h-5 flex items-center justify-center hover:bg-strongBrown transition-colors duration-200">
+          <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </button>
     </ul>
   </nav>
 </header>

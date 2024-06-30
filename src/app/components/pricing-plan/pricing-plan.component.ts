@@ -14,16 +14,6 @@ interface PricingPlan {
 export class PricingPlanComponent {
   plans: PricingPlan[] = [
     {
-      name: 'ZEN STARTER',
-      price: 10,
-      features: [
-        'Curated yoga classes for beginners',
-        '5 yoga classes per month',
-        'Access to the online community',
-        'Weekly guided meditation sessions'
-      ]
-    },
-    {
       name: 'ENERGY BOOSTER',
       price: 18,
       features: [

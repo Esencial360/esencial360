@@ -1,0 +1,22 @@
+.marquee {
+    @apply overflow-hidden whitespace-nowrap; /* Hide overflow and prevent line breaks */
+  }
+  
+  .marquee__content {
+    @apply flex animate-marquee; /* Enable flexbox and apply the animation */
+  }
+  
+  .logo {
+    @apply h-6 mx-4; /* Adjust height and margin as needed */
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } /* Move the full width to the left */
+  }
+  
+  /* Optional: Adjust animation speed */
+  .animate-marquee {
+    animation: marquee 1s linear infinite;
+  }
+  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { InstructorService } from '../../shared/services/instructor.service';
 import { BlogService } from '../../shared/services/blog.service';
@@ -37,12 +37,16 @@ interface Service {
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit  {
   classes: ClassOverview[] = [];
   instructors: Instructor[] = [];
   blogs: Blog[] = [];
   services: Service[] = [];
   backgroundImageUrl = '../../../assets/images/yoga.jpg';
+
+  @ViewChild('marqueeContainer') marqueeContainer!: ElementRef;
+  @ViewChild('marqueeContent') marqueeContent!: ElementRef;
+
 
   constructor(
     private router: Router,
@@ -50,6 +54,19 @@ export class LandingComponent implements OnInit {
     private instructorService: InstructorService,
     public authService: AuthService
   ) {}
+
+  ngAfterViewInit(): void {
+    // Ensure content is rendered before manipulating it
+    const marqueeContentEl = this.marqueeContent.nativeElement;
+    const logoWidth = marqueeContentEl.querySelector('.logo').offsetWidth;
+    const marqueeWidth = marqueeContentEl.offsetWidth;
+
+    marqueeContentEl.innerHTML += marqueeContentEl.innerHTML; // Clone
+    marqueeContentEl.style.width = `${marqueeWidth * 2}px`;
+
+    const animationDuration = (marqueeWidth / 50) * 10; // Adjust speed here
+    marqueeContentEl.style.animationDuration = `${animationDuration}s`;
+  }
 
   ngOnInit(): void {
     this.classes = [
