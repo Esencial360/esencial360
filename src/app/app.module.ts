@@ -42,6 +42,7 @@ import { PricingPlanComponent } from './components/pricing-plan/pricing-plan.com
 import { NewsAndBlogsComponent } from './components/news-and-blogs/news-and-blogs.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { InstructorsOverviewComponent } from './components/instructors-overview/instructors-overview.component';
+import { ScrollingBannerComponent } from './components/scrolling-banner/scrolling-banner.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { InstructorsOverviewComponent } from './components/instructors-overview/
     NewsAndBlogsComponent,
     BannerComponent,
     InstructorsOverviewComponent,
+    ScrollingBannerComponent,
     
   ],
   imports: [

@@ -6,19 +6,19 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class BunnystreamService {
-  private apiUrl = 'https://video.bunnycdn.com/library/248742/videos?page=1&itemsPerPage=100&orderBy=date';
-  private apiKey = 'dc2584b0-bcf9-4b72-a5cb05db0e19-eeb2-4844';
+  private apiUrl = 'https://video.bunnycdn.com/library/263508';
+  private apiKey = 'ef2617f6-6d44-4df4-a35b942cef57-555c-4302';
 
   constructor(private http: HttpClient) { }
 
   getCollectionList(): Observable<any> {
-    const url = 'https://video.bunnycdn.com/library/248742/collections?page=1&itemsPerPage=100&orderBy=date&includeThumbnails=false';
+    const url = `${this.apiUrl}/collections?page=1&itemsPerPage=100&orderBy=date&includeThumbnails=false`;
     const headers = { 'AccessKey': this.apiKey };
     return this.http.get(url, { headers });
   }
 
-  getVideosList(collectionId: string): Observable<any> {
-    const url = 'https://video.bunnycdn.com/library/248742/videos?page=1&itemsPerPage=100&orderBy=date';
+  getVideosList(): Observable<any> {
+    const url = `${this.apiUrl}/videos?page=1&itemsPerPage=100&orderBy=date`;
     const headers = { 'AccessKey': this.apiKey };
     return this.http.get(url, { headers });
   }
@@ -30,7 +30,7 @@ export class BunnystreamService {
   //   return this.http.get(url, { headers });
   // }
   getVideo(videoId: any): Observable<any> {
-    const url = `https://video.bunnycdn.com/library/248742/videos/${videoId}`;
+    const url = `${this.apiUrl}/videos/${videoId}`;
     const headers = { 'AccessKey': this.apiKey };
   
     return this.http.get(url, { headers }).pipe(   
@@ -52,7 +52,7 @@ export class BunnystreamService {
   }
 
   createVideo(title: string, collectionId: string, thumbnailTime?: number) {
-    const url = `https://video.bunnycdn.com/library/248742/videos`;
+    const url = `${this.apiUrl}/videos`;
     const headers = { 'AccessKey': this.apiKey };
     const body = {
       title: title,
@@ -65,7 +65,7 @@ export class BunnystreamService {
   }
 
   uploadVideo(videoId: string, file: File, thumbnailTime?: number) {
-    const url = `https://video.bunnycdn.com/library/248742/videos/${videoId}`;
+    const url = `${this.apiUrl}/videos/${videoId}`;
     const headers = {
       'AccessKey': this.apiKey
     };
@@ -78,7 +78,7 @@ export class BunnystreamService {
   }
 
   deleteVideo(videoId: string) {
-    const url = `https://video.bunnycdn.com/library/248742/videos/${videoId}`;
+    const url = `${this.apiUrl}/videos/${videoId}`;
     const headers = {
       'AccessKey': this.apiKey
     };
@@ -89,7 +89,7 @@ export class BunnystreamService {
   }
 
   getVideoStatistics() {
-    const url = `https://video.bunnycdn.com/library/248742/statistics`;
+    const url = `${this.apiUrl}/statistics`;
     const headers = {
       'AccessKey': this.apiKey
     };

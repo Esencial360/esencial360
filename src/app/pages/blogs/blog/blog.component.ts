@@ -6,6 +6,15 @@ import { Category } from '../../../shared/Models/Category';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 
+interface Article {
+  image: string;
+  author: string;
+  date: string;
+  title: string;
+  description: string;
+  tag: string;
+}
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -16,6 +25,32 @@ export class BlogComponent implements OnInit {
   categories: Category[] = [];
   imageId = '363849589bd5e9ef22f015490ee80ac1'; // Example ID from MongoDB
   safeImageUrl: SafeUrl = '';
+  articles: Article[] = [
+    {
+      image: 'path/to/yoga-sleep.jpg',
+      author: 'Olivia Rhye',
+      date: 'Jan 29, 2024',
+      title: 'Yoga for sleep: Evening routines for better rest',
+      description: 'Breathing plays an essential role in our well-being. Follow the advice of Dr. Marie',
+      tag: 'Health'
+    },
+    {
+      image: 'path/to/yoga-styles.jpg',
+      author: 'Olivia Rhye',
+      date: 'Jan 29, 2024',
+      title: 'Exploring the different styles of Yoga',
+      description: 'Breathing plays an essential role in our well-being. Follow the advice of Dr. Marie',
+      tag: 'Health'
+    },
+    {
+      image: 'path/to/yoga-kids.jpg',
+      author: 'Olivia Rhye',
+      date: 'Jan 29, 2024',
+      title: 'Yoga and mindfulness for kids',
+      description: 'Breathing plays an essential role in our well-being. Follow the advice of Dr. Marie',
+      tag: 'Health'
+    }
+  ];
 
   @Input()
   blogSelected!: string;

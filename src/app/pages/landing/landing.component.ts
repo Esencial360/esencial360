@@ -37,7 +37,7 @@ interface Service {
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })
-export class LandingComponent implements OnInit, AfterViewInit  {
+export class LandingComponent implements OnInit  {
   classes: ClassOverview[] = [];
   instructors: Instructor[] = [];
   blogs: Blog[] = [];
@@ -55,18 +55,6 @@ export class LandingComponent implements OnInit, AfterViewInit  {
     public authService: AuthService
   ) {}
 
-  ngAfterViewInit(): void {
-    // Ensure content is rendered before manipulating it
-    const marqueeContentEl = this.marqueeContent.nativeElement;
-    const logoWidth = marqueeContentEl.querySelector('.logo').offsetWidth;
-    const marqueeWidth = marqueeContentEl.offsetWidth;
-
-    marqueeContentEl.innerHTML += marqueeContentEl.innerHTML; // Clone
-    marqueeContentEl.style.width = `${marqueeWidth * 2}px`;
-
-    const animationDuration = (marqueeWidth / 50) * 10; // Adjust speed here
-    marqueeContentEl.style.animationDuration = `${animationDuration}s`;
-  }
 
   ngOnInit(): void {
     this.classes = [
