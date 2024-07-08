@@ -43,6 +43,7 @@ import { NewsAndBlogsComponent } from './components/news-and-blogs/news-and-blog
 import { BannerComponent } from './components/banner/banner.component';
 import { InstructorsOverviewComponent } from './components/instructors-overview/instructors-overview.component';
 import { ScrollingBannerComponent } from './components/scrolling-banner/scrolling-banner.component';
+import { InViewDirective } from './shared/directives/fade-in-on-scroll.directive';
 
 @NgModule({
   declarations: [
@@ -81,8 +82,8 @@ import { ScrollingBannerComponent } from './components/scrolling-banner/scrollin
     NewsAndBlogsComponent,
     BannerComponent,
     InstructorsOverviewComponent,
-    ScrollingBannerComponent,
-    
+    InViewDirective,
+    ScrollingBannerComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +91,7 @@ import { ScrollingBannerComponent } from './components/scrolling-banner/scrollin
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule, 
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),

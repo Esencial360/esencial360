@@ -14,7 +14,9 @@ body.menu-opened {
 
 body {
   background-color: #F1EEE6;
+  scroll-behavior: smooth;
 }
+
 
 .raleway-regular {
     font-family: "Raleway", sans-serif;

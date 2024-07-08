@@ -35,8 +35,8 @@ export class BunnystreamService {
   
     return this.http.get(url, { headers }).pipe(   
       tap(response => {
-      console.log('Full response:', response);  // Log the complete response
-      console.log('Video data:', response); // Log the data property if it exists
+      console.log('Full response:', response); 
+      console.log('Video data:', response);
     }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {

@@ -10,9 +10,11 @@
                 </div>
               </div> -->
     <div
-      class="p-8 relative h-[50rem] mb-10 rounded-3xl flex flex-col justify-center"
+      class="p-8 relative h-[50rem] rounded-3xl flex flex-col justify-center"
       [ngClass]="$index % 2 !== 0 ? 'bg-white' : 'bg-bone'"
     >
+    <!-- <img class="absolute left-[40%] h-full" [src]="$index % 2 !== 0 ? '../../../../assets/svg/llline (1).svg' : '../../../../assets/svg/llline (2).svg'" alt=""> -->
+    <img class="absolute right-[10%] h-full" [style]="$index % 2 !== 0 ? 'transform: rotate(3.142rad);' : ''" [src]="'../../../../assets/svg/llline (1).svg'" alt="">
       <div class="container mx-auto">
         <p class="text-blue font-bold uppercase text-sm mb-2">
           {{ category.name }}

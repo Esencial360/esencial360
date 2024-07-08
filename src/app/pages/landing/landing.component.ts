@@ -5,6 +5,7 @@ import { BlogService } from '../../shared/services/blog.service';
 import { Blog } from '../../shared/Models/Blog';
 import { Instructor } from '../../shared/Models/Instructor';
 import { AuthService } from '@auth0/auth0-angular';
+import { fadeInAnimation } from '../../shared/animations/fade-in.animation';
 
 interface ClassOverview {
   image: string;
@@ -36,8 +37,10 @@ interface Service {
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
+  animations: [fadeInAnimation]
 })
 export class LandingComponent implements OnInit  {
+  elementState = 'invisible';
   classes: ClassOverview[] = [];
   instructors: Instructor[] = [];
   blogs: Blog[] = [];
@@ -95,6 +98,10 @@ export class LandingComponent implements OnInit  {
 
     this.fetchBlogs();
     this.fetchInstructors();
+  }
+
+  onInView() {
+    this.elementState = 'visible';
   }
 
   async fetchBlogs() {

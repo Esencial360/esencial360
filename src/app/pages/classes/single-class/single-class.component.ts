@@ -36,8 +36,9 @@ export class SingleClassComponent implements OnInit {
     this.bunnystreamService.getVideo(this.videoId).subscribe(
       (response: any) => {
         this.videos = response;
-        const link = `https://iframe.mediadelivery.net/embed/248742/${this.videos.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`;
+        const link = `https://iframe.mediadelivery.net/embed/263508/${this.videos.guid}?autoplay=false&loop=false&muted=false&preload=false&responsive=true`;
         this.link = this.sanitizer.bypassSecurityTrustResourceUrl(link);
+        console.log(this.link)
       },
       (error) => {
         console.error('Error retrieving videos:', error);

@@ -47,6 +47,10 @@ export class HeaderComponent {
   onUserSettings () {
     this.route.navigate(['/ajustes'])
   }
+
+  onInstructors() {
+    this.route.navigate(['/instructores'])
+  }
   
 
   toggle() {

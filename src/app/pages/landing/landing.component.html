@@ -1,11 +1,11 @@
 <app-header></app-header>
 @if(authService.isAuthenticated$ | async) {
-<app-user-dashboard class="w-full"></app-user-dashboard>
+<app-user-dashboard class="w-full montserrat-normal"></app-user-dashboard>
 } @else {
-<section class="bg-white raleway-regular container mx-auto h-auto px-4 py-8 ">
-  <div class="bg-white p-8 relative overflow-hidden flex flex-col h-5/6">
-    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-8 md:mb-0">
+<section class="bg-white montserrat-normal container mx-auto h-auto px-4 py-8 ">
+  <div [@fadeIn]="elementState" appInView (inView)="onInView()" class="bg-white p-8 relative overflow-hidden flex flex-col h-5/6">
+    <div [@fadeIn]="elementState" appInView (inView)="onInView()" class="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center">
+      <div [@fadeIn]="elementState" appInView (inView)="onInView()" class="md:w-1/2 mb-8 md:mb-0">
         <div class="flex items-center mb-4">
           <div class="flex -space-x-2 mr-4">
             <img src="../../../assets/images/examplePerson.jpg" class="w-8 h-8 rounded-full border-2 border-white" alt="User avatar">
@@ -129,9 +129,9 @@
   </div> -->
 </section>
 <section class="container mx-auto px-4 py-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div [@fadeIn]="elementState" appInView (inView)="onInView()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div>
-      <h2 class="text-green-600 font-semibold mb-2 text-blue">OUR SERVICES</h2>
+      <h2 [@fadeIn]="elementState" appInView (inView)="onInView()" class="text-green-600 font-semibold mb-2 text-blue">OUR SERVICES</h2>
       <h1 class="text-2xl font-bold mb-4 text-strongBrown">
         Our services for a healthy body
       </h1>
@@ -177,7 +177,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <div>
       <h2 class="text-green-600 font-semibold mb-2 text-blue">OUR BLOG</h2>
-      <h1 class="text-2xl font-bold mb-4 text-strongBrown">
+      <h1 [@fadeIn]="elementState" appInView (inView)="onInView()" class="text-2xl font-bold mb-4 text-strongBrown">
         CHECK OUT OUR BLOG
       </h1>
       <p class="text-gray-600 text-sm text-strongBrown">
