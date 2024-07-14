@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InstructorService } from '../../../shared/services/instructor.service';
 import { Instructor } from '../../../shared/Models/Instructor';
 import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
@@ -28,7 +28,8 @@ export class SingleInstructorComponent implements OnInit {
     private route: ActivatedRoute,
     private instructorService: InstructorService,
     private bunnystreamService: BunnystreamService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   @Input() imageUrl: string = '../../../../assets/images/yoga.jpg';
@@ -47,8 +48,8 @@ export class SingleInstructorComponent implements OnInit {
       (response) => {
         console.log('Instructor get successfully', response);
         this.instructor = response;
-        console.log(this.instructor.videos)
-        this.getVideo(this.instructor.videos)
+        console.log(this.instructor.videos);
+        this.getVideo(this.instructor.videos);
       },
       (error) => {
         console.error('Instructor get error', error);
@@ -56,41 +57,105 @@ export class SingleInstructorComponent implements OnInit {
     );
   }
 
+  // async getVideo(videoIds: any) {
+  //   if (videoIds.length === 0) {
+  //   } else if (videoIds.length === 1) {
+  //     await this.bunnystreamService.getVideo(videoIds).subscribe(
+  //       (response: any) => {
+  //         this.videos = [response];
+  //         console.log(this.videos)
+  //         this.links = this.videos.map((video) => {
+  //           const link = `https://iframe.mediadelivery.net/embed/263508/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`;
+  //           return this.sanitizer.bypassSecurityTrustResourceUrl(link);
+  //         });
+  //       },
+  //       (error) => {
+  //         console.error('Error retrieving videos:', error);
+  //       }
+  //     );
+  //   } else if (videoIds.length > 1) {
+  //     from(videoIds)
+  //       .pipe(
+  //         concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
+  //         map((video) =>
+  //           this.sanitizer.bypassSecurityTrustResourceUrl(
+  //             `https://iframe.mediadelivery.net/embed/263508/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`
+  //           )
+  //         ),
+  //         toArray()
+  //       )
+  //       .subscribe({
+  //         next: (links) => {
+  //           this.links = links;
+  //           console.log(this.links)
+  //           console.log(this.videos)
+  //         },
+  //         error: (error) => {
+  //           console.error('Error retrieving videos:', error);
+  //         },
+  //       });
+  //   }
+  // }
+
   async getVideo(videoIds: any) {
+    console.log(videoIds);
+
     if (videoIds.length === 0) {
     } else if (videoIds.length === 1) {
-      await this.bunnystreamService.getVideo(videoIds).subscribe(
-        (response: any) => {
-          this.videos = [response];
-          this.links = this.videos.map((video) => {
-            const link = `https://iframe.mediadelivery.net/embed/248742/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`;
-            return this.sanitizer.bypassSecurityTrustResourceUrl(link);
-          });
-        },
-        (error) => {
-          console.error('Error retrieving videos:', error);
-        }
-      );
+      from(videoIds)
+        .pipe(
+          concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
+          map((video) => ({
+            video: video,
+            safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
+              `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`
+            ),
+          })),
+          toArray()
+        )
+        .subscribe({
+          next: (videos) => {
+            this.videos = videos;
+            console.log(this.videos);
+          },
+          error: (error) => {
+            console.error('Error retrieving videos:', error);
+          },
+        });
     } else if (videoIds.length > 1) {
       from(videoIds)
         .pipe(
           concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
-          map((video) =>
-            this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://iframe.mediadelivery.net/embed/248742/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`
-            )
-          ),
+          map((video) => ({
+            video: video,
+            safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/thumbnail.jpg`
+            ),
+          })),
           toArray()
         )
         .subscribe({
-          next: (links) => {
-            this.links = links;
-            console.log(this.links)
+          next: (videos) => {
+            this.videos = videos;
+            console.log(this.videos);
           },
           error: (error) => {
             console.error('Error retrieving videos:', error);
           },
         });
     }
+  }
+
+  onWatchSingleClass(id: string) {
+    // this.router.navigate([`/collection/${this.collectionName}/${id}`]).then((navigationSuccess) => {
+    //   if (navigationSuccess) {
+    //     console.log('Navigation to class successful');
+    //   } else {
+    //     console.error('Navigation to class failed');
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.error(`An error occurred during navigation: ${error.message}`);
+    // });
   }
 }

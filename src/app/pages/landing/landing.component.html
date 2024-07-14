@@ -1,6 +1,6 @@
 <app-header></app-header>
 @if(authService.isAuthenticated$ | async) {
-<app-user-dashboard class="w-full montserrat-normal"></app-user-dashboard>
+<app-user-dashboard [blogs]="blogs" [instructors]="instructors" class="w-full montserrat-normal"></app-user-dashboard>
 } @else {
 <section class="bg-white montserrat-normal container mx-auto h-auto px-4 py-8 ">
   <div [@fadeIn]="elementState" appInView (inView)="onInView()" class="bg-white p-8 relative overflow-hidden flex flex-col h-5/6">

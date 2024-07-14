@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,8 +22,12 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { InstructorFilterComponent } from './shared/instructor-filter/instructor-filter.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { SignUpComponent } from './pages/sign-up/sign-up.component'; 
-import { HttpClientModule, provideHttpClient, withFetch  } from '@angular/common/http';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -44,6 +51,11 @@ import { BannerComponent } from './components/banner/banner.component';
 import { InstructorsOverviewComponent } from './components/instructors-overview/instructors-overview.component';
 import { ScrollingBannerComponent } from './components/scrolling-banner/scrolling-banner.component';
 import { InViewDirective } from './shared/directives/fade-in-on-scroll.directive';
+import {
+  provideCacheableAnimationLoader,
+  provideLottieOptions,
+} from 'ngx-lottie';
+import player from 'lottie-web';
 
 @NgModule({
   declarations: [
@@ -83,31 +95,33 @@ import { InViewDirective } from './shared/directives/fade-in-on-scroll.directive
     BannerComponent,
     InstructorsOverviewComponent,
     InViewDirective,
-    ScrollingBannerComponent
+    ScrollingBannerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()), 
+    provideHttpClient(withFetch()),
     [
       provideAuth0({
         domain: environment.auth0.domain,
         clientId: environment.auth0.clientId,
         authorizationParams: {
           redirect_uri: environment.auth0.redirectUri,
-        }
+        },
       }),
-    
-    provideAnimationsAsync()
-  ]
+
+      provideAnimationsAsync(),
+    ],
+    provideLottieOptions({ player: () => player }),
+    provideCacheableAnimationLoader(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

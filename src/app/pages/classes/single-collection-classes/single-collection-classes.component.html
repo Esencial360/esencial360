@@ -26,8 +26,8 @@
 
       <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" (click)="onWatchSingleClass(video.video.guid)">
         <img
-          [src]="video.safeThumbnail"
-          [alt]="video.safeThumbnail"
+          [src]="video.safeThumbnail.changingThisBreaksApplicationSecurity"
+          [alt]="video.safeThumbnail.changingThisBreaksApplicationSecurity"
           class="w-full h-48 object-cover"
         />
         <div class="p-4">

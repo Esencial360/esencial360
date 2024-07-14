@@ -58,6 +58,7 @@ export class SingleCollectionClassesComponent implements OnInit {
 
   getVideo(videoIds: any) {
     const videoIdsArray = videoIds.previewVideoIds.split(',');
+    console.log(videoIdsArray)
     if (videoIdsArray.length === 0) {
     } else if (videoIdsArray.length === 1) {
       // this.bunnystreamService.getVideo(videoIds.previewVideoIds).subscribe(
@@ -83,10 +84,12 @@ export class SingleCollectionClassesComponent implements OnInit {
           ),
         })),
         toArray()
+
       )
       .subscribe({
         next: (videos) => {
           this.videos = videos;
+          console.log(this.videos)
         },
         error: (error) => {
           console.error('Error retrieving videos:', error);
@@ -99,7 +102,7 @@ export class SingleCollectionClassesComponent implements OnInit {
           map((video) => ({
             video: video,
             safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/thumbnail.jpg`
             ),
           })),
           toArray()
@@ -107,6 +110,7 @@ export class SingleCollectionClassesComponent implements OnInit {
         .subscribe({
           next: (videos) => {
             this.videos = videos;
+            console.log(this.videos)
           },
           error: (error) => {
             console.error('Error retrieving videos:', error);

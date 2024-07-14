@@ -1,6 +1,11 @@
 <app-header></app-header>
+<app-page-title
+  [pageTitle]="'CREA UN NUEVO BLOG'"
+  [pageDescription]="
+    'Descubra los secretos del equilibrio entre alimentación y bienestar para una vida radiante.'
+  "
+></app-page-title>
 <div class="container mx-auto my-8">
-  <h1 class="text-2xl font-bold mb-4">Create a New Blog</h1>
   <form
     [formGroup]="blogForm"
     (ngSubmit)="onSubmit()"
@@ -106,7 +111,8 @@
       <div
         *ngIf="
           blogForm.get('categoryId')?.invalid &&
-          (blogForm.get('categoryId')?.dirty || blogForm.get('categoryId')?.touched)
+          (blogForm.get('categoryId')?.dirty ||
+            blogForm.get('categoryId')?.touched)
         "
       >
         <div *ngIf="blogForm.get('categoryId')?.errors" class="text-red-500">

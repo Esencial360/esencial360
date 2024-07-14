@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 interface Instructor {
@@ -12,6 +12,9 @@ interface Instructor {
   styleUrl: './instructors-overview.component.css'
 })
 export class InstructorsOverviewComponent {
+
+  // @Input()
+  // instructors!: Instructor[]
 
   constructor(private router: Router) {}
 

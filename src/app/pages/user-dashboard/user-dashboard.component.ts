@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -6,6 +6,8 @@ import { BunnystreamService } from '../../shared/services/bunny-stream.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EmailService } from '../../shared/services/email.service';
+import { Blog } from '../../shared/Models/Blog';
+import { Instructor } from '../../shared/Models/Instructor';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -13,6 +15,13 @@ import { EmailService } from '../../shared/services/email.service';
   styleUrl: './user-dashboard.component.css',
 })
 export class UserDashboardComponent implements OnInit {
+
+  @Input()
+  blogs!: Blog[]
+
+  @Input()
+  instructors!: any[]
+
   private ngUnsubscribe = new Subject<void>();
   videos!: any[];
   links: SafeResourceUrl[] = [];
@@ -31,7 +40,7 @@ export class UserDashboardComponent implements OnInit {
       if (user) {
         console.log('User:', user);
         // Access the user's role(s) from the user object
-        const roles = user['https://dev-syvyfpm6kjwu0kzp.us.auth0.com/roles'];
+        const roles = user['dev-syvyfpm6kjwu0kzp.us.auth0.com/roles'];
         console.log('User roles:', roles);
         // Perform any necessary actions based on the user's role(s)
       }
@@ -69,6 +78,37 @@ export class UserDashboardComponent implements OnInit {
         // Handle error (e.g., show an error message)
       }
     });
+  }
+
+  
+  navigateToBlog() {
+    this.router
+      .navigateByUrl('/blog')
+      .then((navigationSuccess) => {
+        if (navigationSuccess) {
+          console.log('Navigation to blog page successful');
+        } else {
+          console.error('Navigation to blog page failed');
+        }
+      })
+      .catch((error) => {
+        console.error(`An error occurred during navigation: ${error.message}`);
+      });
+  }
+
+  onNavigateToSingleBlog(id: string) {
+    this.router
+      .navigate([`/blog/${id}`])
+      .then((navigationSuccess) => {
+        if (navigationSuccess) {
+          console.log(`Navigation to blog ${id} successful`);
+        } else {
+          console.error(`Navigation to blog ${id} failed`);
+        }
+      })
+      .catch((error) => {
+        console.error(`An error occurred during navigation: ${error.message}`);
+      });
   }
 
   // getVideos() {
