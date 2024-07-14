@@ -13,9 +13,14 @@
       class="p-8 relative h-[50rem] rounded-3xl flex flex-col justify-center overflow-hidden"
       [ngClass]="$index % 2 !== 0 ? 'bg-white' : 'bg-bone'"
     >
-    <!-- <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas> -->
-    <!-- <img class="absolute left-[40%] h-full" [src]="$index % 2 !== 0 ? '../../../../assets/svg/llline (1).svg' : '../../../../assets/svg/llline (2).svg'" alt=""> -->
-    <img class="absolute h-[110%]" [ngClass]="$index % 2 !== 0 ? 'hidden' : 'right-[10%]'" [src]="'../../../../assets/svg/llline (1).svg'" alt="">
+      <!-- <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas> -->
+      <!-- <img class="absolute left-[40%] h-full" [src]="$index % 2 !== 0 ? '../../../../assets/svg/llline (1).svg' : '../../../../assets/svg/llline (2).svg'" alt=""> -->
+      <img
+        class="absolute h-[110%]"
+        [ngClass]="$index % 2 !== 0 ? 'hidden' : 'right-[10%]'"
+        [src]="'../../../../assets/svg/llline (1).svg'"
+        alt=""
+      />
       <div class="container mx-auto z-50">
         <p class="text-blue font-bold uppercase text-sm mb-2">
           {{ category.name }}

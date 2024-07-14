@@ -4,13 +4,19 @@
   [pageDescription]="
     'Descubra los secretos del equilibrio entre alimentación y bienestar para una vida radiante.'
   "
+  [arrowBack]="true"
 ></app-page-title>
-<div class="container mx-auto my-8">
+<div class="p-8 relative h-[50rem] rounded-3xl flex flex-col justify-center overflow-hidden bg-bone">
+  <img
+  class="absolute h-[110%] right-[10%]"
+  [src]="'../../../../assets/svg/llline (1).svg'"
+  alt=""
+/>
   <form
     [formGroup]="blogForm"
     (ngSubmit)="onSubmit()"
-    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-  >
+    class="rounded px-8 pt-6 pb-8 mb-4 z-20 lg:w-8/12"
+  > 
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="title">
         Title
@@ -38,7 +44,7 @@
         Description
       </label>
       <textarea
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="shadow appearance-none h-[300px] border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="description"
         rows="3"
         placeholder="Enter blog description"
@@ -123,7 +129,7 @@
     <div class="flex items-center justify-between">
       <button
         type="submit"
-        class="w-full py-2 px-4 bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
+        class="w-full py-2 px-4 bg-strongBrown text-white rounded-md hover:bg-lightBrown transition-colors"
       >
         CREAR BLOG
       </button>

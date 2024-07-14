@@ -57,46 +57,6 @@ export class SingleInstructorComponent implements OnInit {
     );
   }
 
-  // async getVideo(videoIds: any) {
-  //   if (videoIds.length === 0) {
-  //   } else if (videoIds.length === 1) {
-  //     await this.bunnystreamService.getVideo(videoIds).subscribe(
-  //       (response: any) => {
-  //         this.videos = [response];
-  //         console.log(this.videos)
-  //         this.links = this.videos.map((video) => {
-  //           const link = `https://iframe.mediadelivery.net/embed/263508/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`;
-  //           return this.sanitizer.bypassSecurityTrustResourceUrl(link);
-  //         });
-  //       },
-  //       (error) => {
-  //         console.error('Error retrieving videos:', error);
-  //       }
-  //     );
-  //   } else if (videoIds.length > 1) {
-  //     from(videoIds)
-  //       .pipe(
-  //         concatMap((videoId) => this.bunnystreamService.getVideo(videoId)),
-  //         map((video) =>
-  //           this.sanitizer.bypassSecurityTrustResourceUrl(
-  //             `https://iframe.mediadelivery.net/embed/263508/${video.guid}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`
-  //           )
-  //         ),
-  //         toArray()
-  //       )
-  //       .subscribe({
-  //         next: (links) => {
-  //           this.links = links;
-  //           console.log(this.links)
-  //           console.log(this.videos)
-  //         },
-  //         error: (error) => {
-  //           console.error('Error retrieving videos:', error);
-  //         },
-  //       });
-  //   }
-  // }
-
   async getVideo(videoIds: any) {
     console.log(videoIds);
 
@@ -146,16 +106,22 @@ export class SingleInstructorComponent implements OnInit {
     }
   }
 
-  onWatchSingleClass(id: string) {
-    // this.router.navigate([`/collection/${this.collectionName}/${id}`]).then((navigationSuccess) => {
-    //   if (navigationSuccess) {
-    //     console.log('Navigation to class successful');
-    //   } else {
-    //     console.error('Navigation to class failed');
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error(`An error occurred during navigation: ${error.message}`);
-    // });
+  onWatchSingleClass(video: any) {
+    const collectionName = this.bunnystreamService.getCollection(
+      video.collectionId
+    );
+    console.log(collectionName);
+    this.router
+      .navigate([`/collection/${collectionName}/${video.guid}`])
+      .then((navigationSuccess) => {
+        if (navigationSuccess) {
+          console.log('Navigation to class successful');
+        } else {
+          console.error('Navigation to class failed');
+        }
+      })
+      .catch((error) => {
+        console.error(`An error occurred during navigation: ${error.message}`);
+      });
   }
 }
