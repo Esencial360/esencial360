@@ -1,5 +1,5 @@
 <header
-  class="hidden bg-white bg-gray-800 text-black montserrat-normal text-strongBrown px-20 p-4 lg:flex justify-between items-center w-full sticky top-0 z-50"
+  class="hidden  bg-white bg-gray-800 text-black montserrat-normal text-strongBrown px-20 p-4 lg:flex justify-between items-center w-full sticky top-0 z-[9999]"
   style="
     box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 4px,
       rgba(35, 41, 54, 0.08) 0px 8px 16px;
@@ -101,20 +101,21 @@
 
 <!-- @if (!isOpen) { -->
 <header
-  class="lg:hidden text-white bg-white p-4 flex justify-between items-center w-full sticky top-0 z-40"
+  class="lg:hidden text-white bg-white p-4 flex justify-between items-center w-full sticky top-0 z-[9999]"
   style="
     box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 4px,
       rgba(35, 41, 54, 0.08) 0px 8px 16px;
   "
 >
   <div class="flex items-center justify-between w-full">
-    <div class="logo">
+    <div class="flex justify-center items-center">
       <img
         src="../../../assets/images/logo.png"
         alt="Logo"
         class="max-h-20 cursor-pointer rounded-lg"
         (click)="onHome()"
       />
+      <h3 class="text-strongBrown">esencial<span class="text-blue">360</span></h3>
     </div>
     <button class="lg:hidden text-black focus:outline-none" (click)="toggle()">
       <svg
@@ -137,7 +138,7 @@
 <!-- } -->
 
 <section
-  class="fixed top-0 left-0 w-full h-full montserrat-normal bg-black text-white z-50"
+  class="lg:hidden fixed top-0 left-0 w-full h-full montserrat-normal bg-bone text-strongBrown z-[9999]"
   [@menuAnimation]="isOpen ? 'open' : 'closed'"
 >
   <button
@@ -146,6 +147,15 @@
   >
     <span class="material-symbols-outlined"> close </span>
   </button>
+  <div class="flex justify-center items-center">
+    <img
+      src="../../../assets/images/logo.png"
+      alt="Logo"
+      class="max-h-20 cursor-pointer rounded-lg"
+      (click)="onHome()"
+    />
+    <h3 class="text-strongBrown">esencial<span class="text-blue">360</span></h3>
+  </div>
   <div class="container mx-auto px-4 mt-16">
     @if(userConnected) {
     <ul class="space-y-4 text-lg font-semibold">

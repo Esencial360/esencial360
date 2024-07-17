@@ -1,6 +1,6 @@
 @if (authService.user$ | async; as user) {
 <div
-  class="flex items-center justify-around bg-white px-8 py-16 rounded-xl max-w-6xl mx-auto"
+  class="flex md:flex-row  flex-col items-center justify-around bg-white px-8 py-16 rounded-xl max-w-6xl mx-auto"
 >
   <div class="flex-1 pr-8">
     <h2 class="!text-4xl font-bold text-strongBrown mb-4">
@@ -11,7 +11,7 @@
       español.
     </p>
   </div>
-  <div class="w-1/2">
+  <div class="mt-5 md:mt-0 md:w-1/2">
     <img
       src="../../../assets/images/yoga1.jpg"
       alt="Person doing yoga"
