@@ -7,10 +7,11 @@
     "
     [arrowBack]="true"
   ></app-page-title>
-  <div class="flex justify-between">
-    <app-instructor-filter></app-instructor-filter>
-  </div>
+  <!-- <div class="ml-[70px] flex justify-between">
+
+  </div> -->
   <section class="container mx-auto px-4 py-8 montserrat-normal">
+    <app-instructor-filter></app-instructor-filter>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       @for(instructor of instructors; track instructor) {
 

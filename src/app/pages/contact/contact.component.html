@@ -7,17 +7,17 @@
 <section class="w-full flex flex-col items-center montserrat-normal">
 
   <section>
-    <div class="flex flex-col md:flex-row bg-white p-6 mx-10 rounded-lg montserrat-normal">
-      <div class="p-8 relative items-center justify-start  w-11/12 lg:w-6/12 rounded-3xl flex flex-col justify-center overflow-hidden bg-bone">
+    <div class="flex flex-col md:flex-row bg-white p-6 md:mx-10 rounded-lg montserrat-normal">
+      <div class="p-8 relative items-center justify-start  w-12/12 lg:w-6/12 rounded-3xl flex flex-col justify-center overflow-hidden bg-bone">
         <h2 class="text-strongBrown uppercase mb-4">Our friendly team would love to hear from you.</h2>
         <form class="w-full" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-          <div class="my-4 flex">
+          <div class="my-4 flex flex-col lg:flex-row">
               <!-- <label class="block text-strongBrown font-bold mb-2" for="name">Name:</label> -->
-            <input class="shadow appearance-none border rounded w-full py-2 mr-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nombre" type="text" id="name" formControlName="name" required />
+            <input class="shadow appearance-none border rounded w-full mb-4 lg:mb-0 py-2 lg:mr-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nombre" type="text" id="name" formControlName="name" required />
             <div *ngIf="submitted && contactForm.controls['name'].errors">
               Name is required
             </div>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 ml-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Email" type="email" id="email" formControlName="email" required />
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 lg:ml-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Email" type="email" id="email" formControlName="email" required />
             <div *ngIf="submitted && contactForm.controls['email'].errors">
               <div *ngIf="contactForm.controls['email'].errors['required']">
                 Email is required
@@ -62,13 +62,13 @@
       </div>
       <div class="md:w-1/2 mt-6 md:mt-0 flex justify-center">
   
-          <img class="w-8/12 ml-10 rounded-3xl" [src]="'../../../../assets/images/yoga1.jpg'"  />
+          <img class="w-full lg:w-8/12 lg:ml-10 rounded-3xl" [src]="'../../../../assets/images/yoga1.jpg'"  />
   
       </div>
     </div>
   </section>
 <div class="mt-10 w-full mx-auto py-12 text-center bg-bone rounded-t-3xl flex justify-center">
-  <div class="container grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="container w-11/12 lg:w-auto grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="bg-white p-6 rounded-lg shadow-md">
       <span class="material-symbols-outlined text-[60px] text-blue"> support_agent </span>
 

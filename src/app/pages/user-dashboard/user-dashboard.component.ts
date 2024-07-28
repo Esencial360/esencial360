@@ -26,6 +26,7 @@ export class UserDashboardComponent implements OnInit {
   videos!: any[];
   links: SafeResourceUrl[] = [];
   collectionList: any[] = []
+  isLoading!: boolean;
 
   constructor(
     public authService: AuthService,
@@ -36,13 +37,12 @@ export class UserDashboardComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.isLoading = true;
     this.authService.user$.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user) => {
       if (user) {
         console.log('User:', user);
         // Access the user's role(s) from the user object
-        const roles = user['dev-syvyfpm6kjwu0kzp.us.auth0.com/roles'];
-        console.log('User roles:', roles);
-        // Perform any necessary actions based on the user's role(s)
+        this.isLoading = false;
       }
     });
     // this.getVideos();

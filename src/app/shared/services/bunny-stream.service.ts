@@ -94,8 +94,10 @@ export class BunnystreamService {
     );
   }
 
-  getVideoStatistics() {
-    const url = `${this.apiUrl}/statistics`;
+  getVideoStatistics(videoGuid: string) {
+    const url = `${this.apiUrl}/statistics?hourly=false&videoGuid=${videoGuid}`;
+    console.log(url);
+    
     const headers = {
       'AccessKey': this.apiKey
     };

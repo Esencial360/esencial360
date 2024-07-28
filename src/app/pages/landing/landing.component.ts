@@ -6,6 +6,7 @@ import { Blog } from '../../shared/Models/Blog';
 import { Instructor } from '../../shared/Models/Instructor';
 import { AuthService } from '@auth0/auth0-angular';
 import { fadeInAnimation } from '../../shared/animations/fade-in.animation';
+import { Subject, takeUntil } from 'rxjs';
 
 interface ClassOverview {
   image: string;
@@ -46,6 +47,9 @@ export class LandingComponent implements OnInit  {
   blogs: Blog[] = [];
   services: Service[] = [];
   backgroundImageUrl = '../../../assets/images/yoga.jpg';
+  isLoading!: boolean;
+  
+  private ngUnsubscribe = new Subject<void>();
 
   @ViewChild('marqueeContainer') marqueeContainer!: ElementRef;
   @ViewChild('marqueeContent') marqueeContent!: ElementRef;
@@ -60,30 +64,14 @@ export class LandingComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    // this.classes = [
-    //   {
-    //     image: '../../../assets/images/yoga.jpg',
-    //     title: 'YOGA',
-    //     description:
-    //       'Get lost in your flow state with every yoga variety, from Vinyasa to Hatha.',
-    //     link: 'linktoclasses',
-    //   },
-    //   {
-    //     image: '../../../assets/images/yoga.jpg',
-    //     title: 'FITNESS',
-    //     description:
-    //       'Get lost in your flow state with every yoga variety, from Vinyasa to Hatha.',
-    //     link: 'linkToClasses',
-    //   },
-    //   {
-    //     image: '../../../assets/images/yoga.jpg',
-    //     title: 'MINDFULNESS',
-    //     description:
-    //       'Level up your workout with Pilates, Barre, HIIT, and much more',
-    //     link: 'linkToClasses',
-    //   },
-    // ];
-
+    this.isLoading = true;
+    this.authService.user$.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user) => {
+      if (user) {
+        this.isLoading = false;
+      } else {
+        this.isLoading = false;
+      }
+    });
     this.services = [
       { title: 'YOGA', image: '../../../assets/images/yoga.jpg '},
       { title: 'FITNESS', image: '../../../assets/images/yoga.jpg' },
@@ -95,7 +83,6 @@ export class LandingComponent implements OnInit  {
         special: true
       }
     ];
-
     this.fetchBlogs();
     this.fetchInstructors();
   }

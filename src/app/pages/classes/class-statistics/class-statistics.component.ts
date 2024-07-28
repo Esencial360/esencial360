@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
@@ -14,6 +14,12 @@ export class ClassStatisticsComponent implements OnInit {
 
   videos!: any;
   link!: SafeResourceUrl;
+  videoStatistics!: any
+  filteredKeys = ['countryViewCounts', 'countryWatchTime', 'engagementScore'];
+
+
+  @Input()
+  videoGuid!: string; 
 
   constructor(
     private route: ActivatedRoute,
@@ -30,10 +36,23 @@ export class ClassStatisticsComponent implements OnInit {
     this.getVideoStatistics();
   }
 
+  getKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+
+  getValues(obj: any): any[] {
+    return Object.values(obj);
+  }
+
+  getEntries(obj: any): [string, any][] {
+    return Object.entries(obj);
+  }
+
   getVideoStatistics() {
-    this.bunnystreamService.getVideoStatistics().subscribe(
+    this.bunnystreamService.getVideoStatistics(this.videoGuid).subscribe(
       (response: any) => {
         console.log(response)
+        this.videoStatistics = response
       },
       (error) => {
         console.error('Error retrieving videos:', error);

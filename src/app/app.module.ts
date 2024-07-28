@@ -56,6 +56,7 @@ import {
   provideLottieOptions,
 } from 'ngx-lottie';
 import player from 'lottie-web';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import player from 'lottie-web';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-  ],
+    LoadingComponent
+],
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),

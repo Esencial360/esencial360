@@ -15,6 +15,7 @@ export class SingleClassComponent implements OnInit {
 
   videos!: any;
   link!: SafeResourceUrl;
+  isLoading!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class SingleClassComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe((params) => {
       this.videoId = params.get('id');
       console.log(this.videoId);
@@ -38,7 +40,7 @@ export class SingleClassComponent implements OnInit {
         this.videos = response;
         const link = `https://iframe.mediadelivery.net/embed/263508/${this.videos.guid}?autoplay=false&loop=false&muted=false&preload=false&responsive=true`;
         this.link = this.sanitizer.bypassSecurityTrustResourceUrl(link);
-        console.log(this.link)
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error retrieving videos:', error);
