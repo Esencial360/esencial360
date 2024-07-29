@@ -21,6 +21,9 @@ export class ClassStatisticsComponent implements OnInit {
   @Input()
   videoGuid!: string; 
 
+  @Input()
+  adminView!: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private bunnystreamService: BunnystreamService,

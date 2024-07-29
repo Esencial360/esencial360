@@ -9,10 +9,12 @@
       <h3 class="text-xl text-strongBrown font-semibold mb-2 capitalize">
         {{ key === "countryWatchTime" ? "Tiempo de reproduccion" : "Visitas" }}
       </h3>
-      <p class="text-strongBrown mb-4">
-        Breathing plays an essential role in our well-being. Follow the advice
-        of Dr. Marie
-      </p>
+      @if (!adminView) {
+        <p class="text-strongBrown mb-4">
+          Breathing plays an essential role in our well-being. Follow the advice
+          of Dr. Marie
+        </p>
+      }
     </div>
   </div>
   } }
@@ -21,15 +23,17 @@
     <p class="montserrat-normal text-8xl text-strongBrown text-center">
       {{ videoStatistics["engagementScore"] + "%" }}
     </p>
-    <div class="p-4">
-      <h3 class="text-xl text-strongBrown font-semibold mb-2 capitalize">
-        Engagement Score
-      </h3>
-      <p class="text-strongBrown mb-4">
-        Breathing plays an essential role in our well-being. Follow the advice
-        of Dr. Marie
-      </p>
-    </div>
+      <div class="p-4">
+        <h3 class="text-xl text-strongBrown font-semibold mb-2 capitalize">
+          Engagement Score
+        </h3>
+        @if (!adminView) {
+        <p class="text-strongBrown mb-4">
+          Breathing plays an essential role in our well-being. Follow the advice
+          of Dr. Marie
+        </p>
+      }
+      </div>
   </div>
   <!-- <div *ngFor="let key of filteredKeys">
         <h3>{{ key }}</h3>

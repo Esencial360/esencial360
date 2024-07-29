@@ -7,19 +7,7 @@
           Improves posture, strengthens ankles, knees and thighs, calms the mind.
         </p>
         <div class="flex space-x-4" (click)="onHandleCollection(category.name)">
-          <button class="bg-blue text-white px-6 py-2 rounded-full flex items-center relative">
-            See More
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 bg-lightBrown rounded-full absolute left-[111px] border-4 border-blue" viewBox="0 0 20 20" fill="white">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <!-- <div class="rounded-full border-blue border-4 absolute bottom-4 left-4 ml-1"> -->
-          <!-- <button class="bg-blue text-white px-6 py-2 rounded-full flex items-center">
-            Subscribe
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button> -->
+          <app-button [text]="'Accede'"></app-button>
         </div>
       </div>
       <div class="md:w-4/12 relative">

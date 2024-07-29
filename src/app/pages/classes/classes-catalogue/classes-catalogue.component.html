@@ -2,19 +2,10 @@
 <div class="">
   <div class="">
     @for(category of collectionList; track $index) {
-    <!-- <div class="bg-white rounded-lg shadow-md overflow-hidden" (click)="onSingleCollection(category.name)">
-                <img [src]="'../../../../assets/images/yoga.jpg'" alt="{{ category.name }}" class="w-full h-48 object-cover">
-                <div class="p-4">
-                  <h3 class="text-xl font-semibold">{{ category.name }}</h3>
-                  <a href="#" class="text-blue-500 hover:underline">See All</a>
-                </div>
-              </div> -->
     <div
       class="p-4 md:p-8 relative h-[50rem] rounded-3xl flex flex-col justify-center overflow-hidden"
       [ngClass]="$index % 2 !== 0 ? 'bg-white' : 'bg-bone'"
     >
-      <!-- <canvas id="dotlottie-canvas" style="width: 300px; height:300px;"></canvas> -->
-      <!-- <img class="absolute left-[40%] h-full" [src]="$index % 2 !== 0 ? '../../../../assets/svg/llline (1).svg' : '../../../../assets/svg/llline (2).svg'" alt=""> -->
       <img
         class="absolute h-[110%]"
         [ngClass]="$index % 2 !== 0 ? 'hidden' : 'right-[10%]'"
@@ -37,33 +28,6 @@
         (onSingleCollection)="onSingleCollection($event)"
         [index]="$index"
       ></app-banner>
-      <!-- <div class="bg-white rounded-lg shadow-lg overflow-hidden flex">
-                  <div class="p-6 flex-1">
-                    <div class="flex items-center mb-4">
-                      <span class="bg-lime-200 p-2 rounded-full mr-3">
-                        <svg class="w-6 h-6 text-lime-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                      </span>
-                      <h2 class="text-2xl font-semibold text-lime-900">Tadasana</h2>
-                    </div>
-                    <p class="text-lime-700 mb-6">Improves posture, strengthens ankles, knees and thighs, calms the mind.</p>
-                    <button class="bg-white text-lime-600 border border-lime-600 px-4 py-2 rounded-full flex items-center hover:bg-lime-50 transition-colors">
-                      Access the course
-                      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="w-1/2 relative">
-                    <img src="path-to-your-image.jpg" alt="Woman doing yoga" class="object-cover h-full w-full">
-                    <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-lime-500 text-white rounded-full p-2 hover:bg-lime-600 transition-colors">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div> -->
     </div>
     }
   </div>

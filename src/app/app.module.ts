@@ -3,7 +3,7 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -27,6 +27,7 @@ import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
@@ -35,7 +36,7 @@ import { NewBlogComponent } from './pages/blogs/new-blog/new-blog.component';
 import { NewsComponent } from './pages/news/news/news.component';
 import { NewNewsComponent } from './pages/news/new-news/new-news.component';
 import { SingleNewsComponent } from './pages/news/single-news/single-news.component';
-import { provideAuth0, AuthModule } from '@auth0/auth0-angular';
+import { provideAuth0, AuthModule, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { InstructorSingUpComponent } from './pages/instructor-sing-up/instructor-sing-up.component';
 import { ClassesCatalogueComponent } from './pages/classes/classes-catalogue/classes-catalogue.component';
 import { SingleCollectionClassesComponent } from './pages/classes/single-collection-classes/single-collection-classes.component';
@@ -57,6 +58,9 @@ import {
 } from 'ngx-lottie';
 import player from 'lottie-web';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { CheckMarkComponent } from './shared/check-mark/check-mark.component';
+import { InstructorAdminViewComponent } from './pages/instructors/instructor-admin-view/instructor-admin-view.component';
+
 
 @NgModule({
   declarations: [
@@ -97,6 +101,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
     InstructorsOverviewComponent,
     InViewDirective,
     ScrollingBannerComponent,
+    InstructorAdminViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,9 +110,21 @@ import { LoadingComponent } from './shared/loading/loading.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    LoadingComponent
+    LoadingComponent,
+    CheckMarkComponent,
+    AuthModule.forRoot({
+      ... environment.auth0,
+      httpInterceptor: {
+        allowedList: [`${environment.dev.serverUrl}`]
+      }
+    })
 ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true
+    },
     provideClientHydration(),
     provideHttpClient(withFetch()),
     [
@@ -120,6 +137,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
       }),
 
       provideAnimationsAsync(),
+      provideAnimations(),
     ],
     provideLottieOptions({ player: () => player }),
     provideCacheableAnimationLoader(),

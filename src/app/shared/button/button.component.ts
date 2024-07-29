@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -22,4 +22,11 @@ export class ButtonComponent {
   @Input()
   text!: string;
 
+  @Output()
+  onActionTrigger = new EventEmitter<boolean>()
+
+  onActionButton() {
+    this.onActionTrigger.emit(true)
+  }
+  
 }

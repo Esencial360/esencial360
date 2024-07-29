@@ -28,6 +28,7 @@ export class SingleCollectionClassesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0); 
     this.route.paramMap.subscribe((params) => {
       this.collectionName = params.get('id');
       console.log(this.collectionName);

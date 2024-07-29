@@ -1,17 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InstructorService } from '../../../shared/services/instructor.service';
-import { Instructor } from '../../../shared/Models/Instructor';
-import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Instructor } from '../../../shared/Models/Instructor';
+import { InstructorService } from '../../../shared/services/instructor.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
 import { concatMap, from, map, toArray } from 'rxjs';
 
 @Component({
-  selector: 'app-single-instructor',
-  templateUrl: './single-instructor.component.html',
-  styleUrl: './single-instructor.component.css',
+  selector: 'app-instructor-admin-view',
+  templateUrl: './instructor-admin-view.component.html',
+  styleUrl: './instructor-admin-view.component.css'
 })
-export class SingleInstructorComponent implements OnInit {
+export class InstructorAdminViewComponent {
+
   instructorId: any;
   bannerImageUrl = 'assets/images/banner-image.jpg';
   instagramIconUrl = 'assets/images/instagram-icon.png';
@@ -125,4 +126,5 @@ export class SingleInstructorComponent implements OnInit {
         console.error(`An error occurred during navigation: ${error.message}`);
       });
   }
+
 }

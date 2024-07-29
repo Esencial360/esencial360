@@ -27,6 +27,7 @@ export class UserDashboardComponent implements OnInit {
   links: SafeResourceUrl[] = [];
   collectionList: any[] = []
   isLoading!: boolean;
+  userRoles: string[] = [];
 
   constructor(
     public authService: AuthService,
@@ -44,6 +45,14 @@ export class UserDashboardComponent implements OnInit {
         // Access the user's role(s) from the user object
         this.isLoading = false;
       }
+      this.authService.user$.subscribe(
+        (profile) => {
+          const namespace = 'https://test-assign-roles.com';
+          this.userRoles = profile?.[`${namespace}roles`] || [];
+          console.log(this.userRoles);
+          
+        }
+      );
     });
     // this.getVideos();
     this.getCollectionList();
