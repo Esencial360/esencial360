@@ -27,7 +27,7 @@
     "@angular/router": "^18.0.6",
     "@angular/ssr": "^18.0.7",
     "@auth0/auth0-angular": "^2.2.3",
-    "@fortawesome/angular-fontawesome": "^0.14.1",
+    "@fortawesome/angular-fontawesome": "^0.15.0",
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@lottiefiles/dotlottie-web": "^0.28.0",
     "@sendgrid/mail": "^8.1.3",
