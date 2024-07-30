@@ -25,6 +25,7 @@ import { SingleClassComponent } from './pages/classes/single-class/single-class.
 import { ClassStatisticsComponent } from './pages/classes/class-statistics/class-statistics.component';
 import { InstructorAdminViewComponent } from './pages/instructors/instructor-admin-view/instructor-admin-view.component';
 
+
 const routes: Routes = [
   { path: '', component: LandingComponent, data: { animation: 'openClosePage' } }, // Default route (empty path)
   // { path: 'dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },

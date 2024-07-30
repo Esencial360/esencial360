@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 import { EmailService } from '../../shared/services/email.service';
 import { Blog } from '../../shared/Models/Blog';
 import { Instructor } from '../../shared/Models/Instructor';
+import { fadeInAnimation } from '../../shared/animations/fade-in.animation';
 
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.css',
+  animations: [fadeInAnimation]
 })
 export class UserDashboardComponent implements OnInit {
 

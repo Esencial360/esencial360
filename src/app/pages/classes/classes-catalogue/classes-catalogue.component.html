@@ -3,6 +3,7 @@
   <div class="">
     @for(category of collectionList; track $index) {
     <div
+      appFadeInView [@fadeIn]
       class="p-4 md:p-8 relative h-[50rem] rounded-3xl flex flex-col justify-center overflow-hidden"
       [ngClass]="$index % 2 !== 0 ? 'bg-white' : 'bg-bone'"
     >

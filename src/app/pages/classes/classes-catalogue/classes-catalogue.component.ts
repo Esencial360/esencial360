@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
+import { fadeInAnimation } from '../../../shared/animations/fade-in.animation';
 
 interface Category {
   name: string;
@@ -12,6 +13,7 @@ interface Category {
   selector: 'app-classes-catalogue',
   templateUrl: './classes-catalogue.component.html',
   styleUrl: './classes-catalogue.component.css',
+  animations: [fadeInAnimation]
 })
 export class ClassesCatalogueComponent implements OnInit {
   @Input()

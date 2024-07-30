@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { fadeInAnimation } from '../../shared/animations/fade-in.animation';
 
 interface Instructor {
   name: string;
@@ -9,7 +10,8 @@ interface Instructor {
 @Component({
   selector: 'app-instructors-overview',
   templateUrl: './instructors-overview.component.html',
-  styleUrl: './instructors-overview.component.css'
+  styleUrl: './instructors-overview.component.css',
+  animations: [fadeInAnimation]
 })
 export class InstructorsOverviewComponent {
 

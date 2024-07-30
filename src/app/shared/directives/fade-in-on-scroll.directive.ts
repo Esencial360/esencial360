@@ -1,35 +1,27 @@
-import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appInView]'
+  selector: '[appFadeInView]'
 })
-export class InViewDirective {
-  @Output() inView: EventEmitter<void> = new EventEmitter<void>();
+export class FadeInViewDirective implements OnInit {
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  private observer!: any;
-  private hasTriggered = false;
+  ngOnInit() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
 
-  constructor(private element: ElementRef) {}
-
-  ngAfterViewInit() {
-    this.observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !this.hasTriggered) {
-          this.inView.emit();
-          this.hasTriggered = true;
-          this.observer.unobserve(this.element.nativeElement);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.renderer.addClass(this.el.nativeElement, 'fade-in');
+          observer.unobserve(this.el.nativeElement);
         }
-      },
-      { threshold: [0.1] }
-    );
+      });
+    }, options);
 
-    this.observer.observe(this.element.nativeElement);
-  }
-
-  ngOnDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = null;
-    }
+    observer.observe(this.el.nativeElement);
   }
 }

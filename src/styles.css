@@ -63,6 +63,15 @@ body {
   .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
   }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+  }
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

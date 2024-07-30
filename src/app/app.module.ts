@@ -51,7 +51,6 @@ import { NewsAndBlogsComponent } from './components/news-and-blogs/news-and-blog
 import { BannerComponent } from './components/banner/banner.component';
 import { InstructorsOverviewComponent } from './components/instructors-overview/instructors-overview.component';
 import { ScrollingBannerComponent } from './components/scrolling-banner/scrolling-banner.component';
-import { InViewDirective } from './shared/directives/fade-in-on-scroll.directive';
 import {
   provideCacheableAnimationLoader,
   provideLottieOptions,
@@ -99,7 +98,6 @@ import { InstructorAdminViewComponent } from './pages/instructors/instructor-adm
     NewsAndBlogsComponent,
     BannerComponent,
     InstructorsOverviewComponent,
-    InViewDirective,
     ScrollingBannerComponent,
     InstructorAdminViewComponent,
   ],
