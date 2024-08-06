@@ -91,7 +91,7 @@ export class InstructorAdminViewComponent {
           map((video) => ({
             video: video,
             safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/thumbnail.jpg`
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/${video.thumbnailFileName}`
             ),
           })),
           toArray()

@@ -69,7 +69,7 @@ export class SingleInstructorComponent implements OnInit {
           map((video) => ({
             video: video,
             safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://vz-4422bc83-71b.b-cdn.net/${video.guid}/thumbnail.jpg`
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/${video.thumbnailFileName}`
             ),
           })),
           toArray()
@@ -90,7 +90,7 @@ export class SingleInstructorComponent implements OnInit {
           map((video) => ({
             video: video,
             safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/thumbnail.jpg`
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/${video.thumbnailFileName}`
             ),
           })),
           toArray()

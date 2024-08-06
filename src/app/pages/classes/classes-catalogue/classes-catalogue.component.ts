@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
-import { fadeInAnimation } from '../../../shared/animations/fade-in.animation';
+import AOS from "aos";
 
 interface Category {
   name: string;
@@ -13,7 +13,6 @@ interface Category {
   selector: 'app-classes-catalogue',
   templateUrl: './classes-catalogue.component.html',
   styleUrl: './classes-catalogue.component.css',
-  animations: [fadeInAnimation]
 })
 export class ClassesCatalogueComponent implements OnInit {
   @Input()
@@ -24,13 +23,9 @@ export class ClassesCatalogueComponent implements OnInit {
   constructor(private router: Router, private location: Location) {}
 
   async ngOnInit() {
-    await console.log(this.collectionList);
-    // this.dotLottie = new DotLottie({
-    //   autoplay: true,
-    //   loop: true,
-    //   canvas: document.querySelector('#dotlottie-canvas'),
-    //   src: 'https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.lottie', // or .json file
-    // });
+    AOS.init({
+      once: true
+    });
   }
 
   onSingleCollection(id: string) {

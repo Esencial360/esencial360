@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import AOS from "aos";
 
 @Component({
   selector: 'app-banner',
@@ -29,6 +30,7 @@ export class BannerComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    AOS.init({once: true});
   }
 
   onHandleCollection(categoryName: string) {

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { fadeInAnimation } from '../../shared/animations/fade-in.animation';
+import AOS from "aos";
 
 interface Instructor {
   name: string;
@@ -11,9 +11,8 @@ interface Instructor {
   selector: 'app-instructors-overview',
   templateUrl: './instructors-overview.component.html',
   styleUrl: './instructors-overview.component.css',
-  animations: [fadeInAnimation]
 })
-export class InstructorsOverviewComponent {
+export class InstructorsOverviewComponent implements OnInit{
 
   // @Input()
   // instructors!: Instructor[]
@@ -30,6 +29,10 @@ export class InstructorsOverviewComponent {
     { name: 'Josh Kramer', imageUrl: '../../../assets/images/examplePerson.jpg' },
     { name: 'Briohny Smyth', imageUrl: '../../../assets/images/examplePerson.jpg' },
   ];
+
+  ngOnInit(){
+    AOS.init({once: true})
+  }
 
   onSeeAll() {
     this.router

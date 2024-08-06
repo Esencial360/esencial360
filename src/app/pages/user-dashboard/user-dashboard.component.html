@@ -3,8 +3,7 @@
 } @else {
   @if (authService.user$ | async; as user) {
     <div
-    appFadeInView [@fadeIn]
-      class="flex md:flex-row  flex-col items-center justify-around bg-white px-8 py-16 rounded-xl max-w-6xl mx-auto"
+      class="flex md:flex-row h-[60vh] flex-col items-center justify-around bg-white px-8 py-16 rounded-xl max-w-6xl mx-auto"
     >
       <div class="flex-1 pr-8">
         <h2 class="!text-4xl font-bold text-strongBrown mb-4">
@@ -43,7 +42,7 @@
     ></app-classes-catalogue>
     <app-instructors-overview></app-instructors-overview>
     <section class="container mx-auto px-4 py-8 mt-10">
-      <div appFadeInView [@fadeIn] class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-down" data-aos-duration="1000">
         <div>
           <h2 class="text-green-600 font-semibold mb-2 text-blue">OUR BLOG</h2>
           <h1 class="text-2xl font-bold mb-4 text-strongBrown">
@@ -61,7 +60,7 @@
           </button>
         </div>
         @for (blog of blogs | slice:0:5; track blog) {
-        <div class="rounded-lg overflow-hidden relative" (click)="onNavigateToSingleBlog(blog._id)">
+        <div data-aos="fade-up" data-aos-duration="1000" class="rounded-lg overflow-hidden relative" (click)="onNavigateToSingleBlog(blog._id)">
           <img
             [src]="'../../../assets/images/yoga.jpg'"
             [alt]=""

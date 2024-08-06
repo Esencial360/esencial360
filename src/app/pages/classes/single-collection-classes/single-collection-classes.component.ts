@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BunnystreamService } from '../../../shared/services/bunny-stream.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { concatMap, from, map, toArray } from 'rxjs';
+import AOS from "aos";
 
 @Component({
   selector: 'app-single-collection-classes',
@@ -34,6 +35,9 @@ export class SingleCollectionClassesComponent implements OnInit {
       console.log(this.collectionName);
     });
     this.getCollectionList();
+    AOS.init({
+      once: true
+    });
   }
 
   getCollectionList() {
@@ -103,7 +107,7 @@ export class SingleCollectionClassesComponent implements OnInit {
           map((video) => ({
             video: video,
             safeThumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(
-              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/thumbnail.jpg`
+              `https://vz-cbbe1d6f-d6a.b-cdn.net/${video.guid}/${video.thumbnailFileName}`
             ),
           })),
           toArray()
